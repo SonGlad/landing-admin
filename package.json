@@ -1,8 +1,8 @@
 {
-  "name": "react_template",
+  "name": "landing-admin",
   "version": "1.1.0",
   "private": true,
-  "homepage": "https://SonGlad.github.io/react_template/",
+  "homepage": "https://SonGlad.github.io/landing-admin/",
   "dependencies": {
     "@babel/plugin-transform-private-property-in-object": "^7.23.4",
     "@reduxjs/toolkit": "^2.0.1",
