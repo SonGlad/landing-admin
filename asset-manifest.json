@@ -1,13 +1,23 @@
 {
   "files": {
     "main.css": "/landing-admin/static/css/main.7cda0caf.css",
-    "main.js": "/landing-admin/static/js/main.5c3bf2a5.js",
+    "main.js": "/landing-admin/static/js/main.f1eb8737.js",
+    "static/js/862.4bf0eb57.chunk.js": "/landing-admin/static/js/862.4bf0eb57.chunk.js",
+    "static/js/598.9eef28bf.chunk.js": "/landing-admin/static/js/598.9eef28bf.chunk.js",
+    "static/js/826.89d0320c.chunk.js": "/landing-admin/static/js/826.89d0320c.chunk.js",
+    "static/media/logo.png": "/landing-admin/static/media/logo.131272d95d0b2cdca194.png",
     "index.html": "/landing-admin/index.html",
+    "static/media/setting-2.svg": "/landing-admin/static/media/setting-2.fcb7be46dc70ad25f95b1d594eb1679e.svg",
+    "static/media/logout.svg": "/landing-admin/static/media/logout.47d6d0dc6aaf1e004df43c1b52b80148.svg",
+    "static/media/arrow-down.svg": "/landing-admin/static/media/arrow-down.e3ed7849216bb46de413bbb56a4a7bcf.svg",
     "main.7cda0caf.css.map": "/landing-admin/static/css/main.7cda0caf.css.map",
-    "main.5c3bf2a5.js.map": "/landing-admin/static/js/main.5c3bf2a5.js.map"
+    "main.f1eb8737.js.map": "/landing-admin/static/js/main.f1eb8737.js.map",
+    "862.4bf0eb57.chunk.js.map": "/landing-admin/static/js/862.4bf0eb57.chunk.js.map",
+    "598.9eef28bf.chunk.js.map": "/landing-admin/static/js/598.9eef28bf.chunk.js.map",
+    "826.89d0320c.chunk.js.map": "/landing-admin/static/js/826.89d0320c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7cda0caf.css",
-    "static/js/main.5c3bf2a5.js"
+    "static/js/main.f1eb8737.js"
   ]
 }
