@@ -1,8 +1,8 @@
 import { StyledHeader, StyledHeaderContainer } from "./Header.styled";
 import { Container } from "../Container/Container";
-// import { AuthNav } from "./AuthNav/AuthNav";
+import { AuthNav } from "./AuthNav/AuthNav";
 import { Navigation } from "./Navigation/Navigation";
-import { UserMenu } from "./UserMenu/UserMenu";
+// import { UserMenu } from "./UserMenu/userMenu";
 
 
 
@@ -14,8 +14,8 @@ export const Header = () => {
             <Container>
                 <StyledHeaderContainer>
                     <Navigation/>
-                    <UserMenu/>
-                    {/* <AuthNav/> */}
+                    {/* <UserMenu/> */}
+                    <AuthNav/>
                 </StyledHeaderContainer>
             </Container>
         </StyledHeader>

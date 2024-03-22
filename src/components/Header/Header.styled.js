@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.header`
     background-color: ${p => p.theme.color.primary_black_2};
+    /* position: relative; */
+    /* z-index: 1; */
 `
 
 export const StyledHeaderContainer = styled.div`
@@ -10,7 +12,8 @@ export const StyledHeaderContainer = styled.div`
     padding: 10px 0;
     width: 100%;
     //position for the "accordion" of the mobile menu
-    position: relative;
+    /* position: relative;
+    z-index: 1; */
 
     @media screen and (min-width: 834px) {
         padding: 15px 0;

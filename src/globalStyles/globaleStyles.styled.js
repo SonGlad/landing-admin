@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${(props) => props.theme.color.primary_black};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
     }
     
 

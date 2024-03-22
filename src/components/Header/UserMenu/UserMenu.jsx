@@ -1,4 +1,4 @@
-import { StyledUserMenu } from "./UserMenu.styled";
+import { StyledUserMenu } from "./userMenu.styled";
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as ArrowDown } from '../../../images/svg-icons/arrow-down.svg';
 import { ReactComponent as SettingIcon2 } from '../../../images/svg-icons/setting-2.svg';

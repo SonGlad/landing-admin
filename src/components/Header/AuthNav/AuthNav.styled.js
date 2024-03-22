@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const StyledAuthNav = styled.div`
+export const StyledAuthNav = styled.nav`
     display: flex;
     align-items: center;
     margin-left: auto;

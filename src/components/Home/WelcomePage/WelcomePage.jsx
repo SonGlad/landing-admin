@@ -1,6 +1,7 @@
 import { StyledWelcomePage } from "./WelcomePage.styled";
-import { Section } from "../../Section/Section";
+import { WelcomeSection } from "../../Section/Section";
 import { Container } from "../../Container/Container";
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -8,12 +9,28 @@ export const WelcomePage = () => {
 
     
     return(
-        <Section>
+        <WelcomeSection>
             <Container>
                 <StyledWelcomePage>
-                    <h1>WELCOME</h1>
+                    <h1 className="welcome-title">WELCOME</h1>
+                        <nav className="welcome-navigation">
+                            <ul className="welcome-nav-list">
+                                <li className="welcome-nav-item">
+                                    <p className="welcome-item-text">If you still don't have an account, please proceed with</p>
+                                    <NavLink className="welcome-nav-link" to="/singup">
+                                        Sing up
+                                    </NavLink>
+                                </li>
+                                <li className="welcome-nav-item">
+                                    <p className="welcome-item-text">If you already have an account, please proceed with</p>
+                                    <NavLink className="welcome-nav-link" to="/singin">
+                                        Sing in
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </nav>
                 </StyledWelcomePage>
             </Container>
-        </Section>
+        </WelcomeSection>
     )
 };
