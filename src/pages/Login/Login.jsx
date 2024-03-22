@@ -1,4 +1,4 @@
-import { Section } from "../../components/Section/Section";
+import { LoginSection } from "../../components/Section/Section";
 import { Container } from "../../components/Container/Container";
 import { Login } from "../../components/Login/Login";
 
@@ -7,11 +7,11 @@ const LoginPage = () => {
 
     
     return(
-        <Section>
+        <LoginSection>
             <Container>
                 <Login/>
             </Container>
-        </Section>
+        </LoginSection>
     )
 };
 

@@ -17,14 +17,14 @@ export const WelcomePage = () => {
                             <ul className="welcome-nav-list">
                                 <li className="welcome-nav-item">
                                     <p className="welcome-item-text">If you still don't have an account, please proceed with</p>
-                                    <NavLink className="welcome-nav-link" to="/singup">
-                                        Sing up
+                                    <NavLink className="welcome-nav-link" to="/signup">
+                                        Sign Up
                                     </NavLink>
                                 </li>
                                 <li className="welcome-nav-item">
                                     <p className="welcome-item-text">If you already have an account, please proceed with</p>
-                                    <NavLink className="welcome-nav-link" to="/singin">
-                                        Sing in
+                                    <NavLink className="welcome-nav-link" to="/signin">
+                                        Sign In
                                     </NavLink>
                                 </li>
                             </ul>
