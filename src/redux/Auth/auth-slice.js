@@ -65,6 +65,7 @@ const authSlice = createSlice({
         .addCase(logIn.pending, state => {
             state.isLoading = true;
             state.error = null;
+            state.isLoggedIn = false;
         })
         .addCase(logIn.fulfilled, (state, {payload}) => {
             state.user = {
@@ -80,6 +81,7 @@ const authSlice = createSlice({
         })
         .addCase(logIn.rejected, (state, {payload}) => {
             state.isLoading = false;
+            state.isLoggedIn = false;
             state.error = payload;
         })
 
@@ -113,7 +115,7 @@ const authSlice = createSlice({
 
         // REFRESH CURRENT USER////////
         .addCase(refreshCurrentUser.pending, state => {
-            state.isLoading = true;
+            // state.isLoading = true;
             state.isRefreshing = true;
         })
         .addCase(refreshCurrentUser.fulfilled, (state, { payload }) => {
@@ -125,11 +127,11 @@ const authSlice = createSlice({
             state.avatarURL = payload.avatarURL;
             state.isLoggedIn = true;
             state.isRefreshing = false;
-            state.isLoading = false;
+            // state.isLoading = false;
             state.error = null;
         })
         .addCase(refreshCurrentUser.rejected, (state, { payload }) => {
-            state.isLoading = false;
+            // state.isLoading = false;
             state.isRefreshing = false;
             state.error = payload;
         })
@@ -137,7 +139,7 @@ const authSlice = createSlice({
 
         // UPDATE USER INORMATION////////
         .addCase(updateUserInfo.pending, state => {
-            state.isLoading = true;
+            // state.isLoading = true;
             state.error = null;
         })
         .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
@@ -148,27 +150,28 @@ const authSlice = createSlice({
                 password: payload.password,
             };
             state.isLoggedIn = true;
-            state.isLoading = false;
+            // state.isLoading = false;
             state.error = null;
         })
         .addCase(updateUserInfo.rejected, (state, { payload }) => {
-            state.isLoading = false;
+            // state.isLoading = false;
             state.error = payload;
         })
 
         
         // UPDATE AVATAR/////
         .addCase(updateUserAvatar.pending, state => {
-            state.isLoading = true;
+            // state.isLoading = true;
+            state.error = null;
         })
         .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
             state.avatarURL = payload.avatarURL;
             state.isLoggedIn = true;
-            state.isLoading = false;
+            // state.isLoading = false;
             state.error = null;
         })
         .addCase(updateUserAvatar.rejected, (state, { payload }) => {
-            state.isLoading = false;
+            // state.isLoading = false;
             state.error = payload;
         })
     }

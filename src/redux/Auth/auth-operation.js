@@ -11,12 +11,10 @@ export const register = createAsyncThunk(
             const response = await axios.post('users/register', credentials);
             // token.set(response.data.token);
             toast.success(`Please check your email for verification`);
-            console.log(response.data);
             return response.data;
         }
         catch(error) {
             toast.error('Oops. Something went wrong. Please try again.');
-            console.log(error);
             return thunkApi.rejectWithValue(error.message);
         }
     }
@@ -30,7 +28,6 @@ export const logIn = createAsyncThunk(
             const response = await axios.post('users/login', credentials);
             token.set(response.data.token);
             toast.success(`Welcome!`);
-            console.log(response.data);
             return response.data;
         }
         catch(error){

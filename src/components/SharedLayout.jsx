@@ -4,9 +4,8 @@ import { Header } from './Header/Header';
 import { Loading } from './CustomLoaders/CustomLoaders';
 
 
-
-
 export const SharedLayout = () => {
+  
 
   return(
     <>

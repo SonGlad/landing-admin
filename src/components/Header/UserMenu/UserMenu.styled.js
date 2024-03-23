@@ -8,6 +8,7 @@ export const StyledUserMenu = styled.div`
     display: flex;
     align-items: center;
     margin-left: auto;
+    /* position: relative; */
 
     @media screen and (min-width: 834px) {
         font-size: 15px;
@@ -19,9 +20,7 @@ export const StyledUserMenu = styled.div`
 
 
     .user-cont{
-        color: ${p => p.theme.color.white};
-        /* font-size: 12px;
-        font-weight: 400; */
+        color: ${p => p.theme.color.primary_white};
         display: flex;
         align-items: center;
     }
@@ -30,11 +29,22 @@ export const StyledUserMenu = styled.div`
         display: flex;
         flex-direction: column;
         gap: 5px;
+        color: ${p => p.theme.color.primary_green_lite};
 
         span {
-            color: ${p => p.theme.color.primary_green_lite}
+            display: flex;
+            gap: 5px;
+        }
+ 
+        p {
+            color: ${p => p.theme.color.primary_white};
+
+            &::first-letter{
+                text-transform: uppercase;
+            }
         }
     }
+
 
     .user-menu-btn {
         display: flex;
@@ -137,35 +147,31 @@ export const StyledUserMenu = styled.div`
             stroke: ${props => props.theme.color.primary_white};
         }
 
-        .link-setting,
+        .button-setting,
         .button-link-logout {
             display: flex;
             align-items: center;
+            border-color: transparent;
+            cursor: pointer;
+            background-color: transparent;
+            padding: 0;
             color: ${props => props.theme.color.primary_white};
-            transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            transition: color ${p => p.theme.transition.main_transition};
         }
 
     
-        .link-setting:hover,
-        .link-setting:focus,
+        .button-setting:hover,
+        .button-setting:focus,
         .button-link-logout:hover,
         .button-link-logout:focus{
             color: ${(props) => props.theme.color.primary_green_lite};
         }
 
-        .link-setting:hover > .setting-icon,
-        .link-setting:focus > .setting-icon,
+        .button-setting:hover > .setting-icon,
+        .button-setting:focus > .setting-icon,
         .button-link-logout:hover > .logout-icon,
         .button-link-logout:focus > .logout-icon{
             stroke: ${(props) => props.theme.color.primary_green_lite};
-        }
-
-
-        .button-link-logout {
-            background-color: transparent;
-            border-color: transparent;
-            cursor: pointer;
-            padding: 0;
         }
     }
 `

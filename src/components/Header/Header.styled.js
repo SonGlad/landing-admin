@@ -12,8 +12,8 @@ export const StyledHeaderContainer = styled.div`
     padding: 10px 0;
     width: 100%;
     //position for the "accordion" of the mobile menu
-    /* position: relative;
-    z-index: 1; */
+    position: relative;
+    /* z-index: 1; */
 
     @media screen and (min-width: 834px) {
         padding: 15px 0;

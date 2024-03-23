@@ -1,15 +1,20 @@
 import { StyledUserMenu } from "./userMenu.styled";
-import { NavLink } from 'react-router-dom';
 import { ReactComponent as ArrowDown } from '../../../images/svg-icons/arrow-down.svg';
 import { ReactComponent as SettingIcon2 } from '../../../images/svg-icons/setting-2.svg';
 import { ReactComponent as LogoutIcon } from '../../../images/svg-icons/logout.svg';
 import DefaltAvatar from "../../../images/images/profile-circle.png";
 import {useCallback, useEffect, useRef, useState} from 'react';
+import { useDispatch } from "react-redux";
+import { logOut } from "../../../redux/Auth/auth-operation";
+import { useAuth } from "../../../hooks/useAuth";
+import { openModalSettings } from "../../../redux/Modal/modal-slice"
 
 
 export const UserMenu = () => {
     const userInfoBlock = useRef(null);
     const [isMenuBox, setMenuBox] = useState(false);
+    const { userName, userRole, userAvatarURL } = useAuth();
+    const dispatch = useDispatch();
 
 
     const toggleUserMenuDrop = () => {
@@ -19,7 +24,7 @@ export const UserMenu = () => {
     const LogOut = () => {
         setMenuBox(false);
         setTimeout(() => {
-        //   dispatch(logOut());
+          dispatch(logOut());
         },250)
     };
 
@@ -57,27 +62,33 @@ export const UserMenu = () => {
         return isMenuBox ? 'arrow-svg-close' : '';
     };
 
+
+    const openSettingsModal = () => {
+        toggleUserMenuDrop();
+        dispatch(openModalSettings());
+    };
+
     
     return(
         <StyledUserMenu>
             <div className="user-cont" ref={userInfoBlock}>
                 <div className="user-name-cont">
-                    <p className="user-name"><span>Name: </span>ALEXANDER</p>
-                    <p className="user-name"><span>Role: </span>Developer</p>
+                    <span>Name: <p>{userName}</p></span>
+                    <span>Role: <p>{userRole}</p></span>
                 </div>
                 <button className="user-menu-btn" type="button" onClick={toggleUserMenuDrop}>
                     <div className="for-user-avater">
-                        <img className="user-avatar-img" src={DefaltAvatar} alt="avatar" />
+                        <img className="user-avatar-img" src={userAvatarURL || DefaltAvatar} alt="avatar" />
                     </div>
                     <ArrowDown className={`arrow-svg ${toggleUserMenuDropArrow()}`}/>
                 </button>
                 <div className={`user-info-cont ${toggleUserMenuDropCont()}`}>
                     <ul className="list-user-menu">
                     <li className="item-user-menu">
-                        <NavLink className="link-setting" to="" onClick={toggleUserMenuDrop}>
+                        <button className="button-setting" type="button" onClick={openSettingsModal}>
                             <SettingIcon2 className="setting-icon" />
                             Setting
-                        </NavLink>
+                        </button>
                     </li>
                     <li className="item-user-menu">
                         <button className="button-link-logout" type="button" onClick={LogOut}>

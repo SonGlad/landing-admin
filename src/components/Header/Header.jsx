@@ -1,12 +1,14 @@
 import { StyledHeader, StyledHeaderContainer } from "./Header.styled";
 import { Container } from "../Container/Container";
-import { AuthNav } from "./AuthNav/AuthNav";
 import { Navigation } from "./Navigation/Navigation";
-// import { UserMenu } from "./UserMenu/userMenu";
+import { AuthNav } from "./AuthNav/AuthNav";
+import { UserMenu } from "./UserMenu/userMenu";
+import {useAuth} from "../../hooks/useAuth"
 
 
 
 export const Header = () => {
+    const {isLoggedIn} = useAuth();
 
 
     return(
@@ -14,8 +16,7 @@ export const Header = () => {
             <Container>
                 <StyledHeaderContainer>
                     <Navigation/>
-                    {/* <UserMenu/> */}
-                    <AuthNav/>
+                    {isLoggedIn ? <UserMenu/> : <AuthNav/>}
                 </StyledHeaderContainer>
             </Container>
         </StyledHeader>

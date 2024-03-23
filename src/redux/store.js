@@ -1,6 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './Auth/auth-slice';
 // import { dataReducer } from './Data/data-slice';
+import { modalReducer } from './Modal/modal-slice';
+
 import { 
   persistStore, 
   persistReducer, 
@@ -30,9 +32,18 @@ const authPersistConfig = {
 //   whitelist: [],
 // };
 
+
+const modalPersistConfig = {
+  key: "modal",
+  storage,
+  whitelist: []
+}
+
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
 //   data: persistReducer(dataPersistConfig, dataReducer),
+  modal: persistReducer(modalPersistConfig, modalReducer),
+
 })
 
 
