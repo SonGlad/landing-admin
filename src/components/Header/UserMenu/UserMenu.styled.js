@@ -64,8 +64,12 @@ export const StyledUserMenu = styled.div`
         margin-right: 4px;
 
         @media screen and (min-width: 834px) {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
+        }
+        @media screen and (min-width: 1440px) {
+            width: 40px;
+            height: 40px;
         }
     }
 

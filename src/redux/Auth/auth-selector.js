@@ -14,4 +14,6 @@ export const selectLoading = state => state.auth.isLoading;
 
 export const selectRefreshing = state => state.auth.isRefreshing;
 
+export const selectSettingsUpdate = state => state.auth.isSettingsUpdated;
+
 export const selectUserLocation = state => state.auth.currentLocation;

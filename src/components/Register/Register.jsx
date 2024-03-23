@@ -60,7 +60,7 @@ export const Register = () => {
                         placeholder="Name"
                         type="text"
                         onChange={handleChange}
-                        value={values.name}
+                        value={values.name.trim()}
                         onBlur={handleBlur}
                     />
                     {getInputAlert("name")}
@@ -73,7 +73,7 @@ export const Register = () => {
                         placeholder="E-mail"
                         type="email"
                         onChange={handleChange}
-                        value={values.email}
+                        value={values.email.trim()}
                         onBlur={handleBlur}
                     />
                     {getInputAlert("email")}
@@ -86,7 +86,7 @@ export const Register = () => {
                         placeholder="Password"
                         type={showPassword ? "text" : "password"}
                         onChange={handleChange}
-                        value={values.password}
+                        value={values.password.trim()}
                         onBlur={handleBlur}
                         onKeyDown={handleChange}
                     />

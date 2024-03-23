@@ -100,9 +100,10 @@ export const StyledRegister = styled.div`
         font-weight: 400;
         line-height: 20px;
         color: ${props => props.theme.color.primary_white};
+
         &:focus {
-        outline: none;
-        box-shadow: none;
+            outline: none;
+            box-shadow: none;
         }
     }
 
@@ -144,7 +145,7 @@ export const StyledRegister = styled.div`
         line-height: 14px;
 
         @media only screen and (min-width: 1440px) {
-        max-width: 200px;
+            max-width: 200px;
         }
     }
 
@@ -158,7 +159,7 @@ export const StyledRegister = styled.div`
         line-height: 14px;
 
         @media only screen and (min-width: 1440px) {
-        max-width: 200px;
+            max-width: 200px;
         }
     }
 
@@ -218,12 +219,12 @@ export const StyledRegister = styled.div`
 
         &:active,
         &:hover {
-        color: ${props => props.theme.color.primary_grey};
+            color: ${props => props.theme.color.primary_grey};
         }
 
         &:disabled {
-        color: ${(props) => props.theme.color.primary_grey};
-        pointer-events: none;
+            color: ${(props) => props.theme.color.primary_grey};
+            pointer-events: none;
         }
     }
 

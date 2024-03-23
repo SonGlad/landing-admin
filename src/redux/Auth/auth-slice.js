@@ -16,6 +16,7 @@ const initialState = {
       password: null,
       role: null,
     },
+    isSettingsUpdated: false,
     token: null,
     avatarURL: null,
     isLoggedIn: false,
@@ -30,9 +31,13 @@ const authSlice = createSlice({
     initialState,
   
     reducers: {
-      saveUserCurrentLocation:(state, action) => {
-        state.currentLocation = action.payload
-      }
+        isSettingsUpdatedtoFalse:(state) => {
+            state.isSettingsUpdated = false
+        },
+
+        saveUserCurrentLocation:(state, action) => {
+            state.currentLocation = action.payload
+        }
     },
 
 
@@ -115,7 +120,6 @@ const authSlice = createSlice({
 
         // REFRESH CURRENT USER////////
         .addCase(refreshCurrentUser.pending, state => {
-            // state.isLoading = true;
             state.isRefreshing = true;
         })
         .addCase(refreshCurrentUser.fulfilled, (state, { payload }) => {
@@ -127,11 +131,9 @@ const authSlice = createSlice({
             state.avatarURL = payload.avatarURL;
             state.isLoggedIn = true;
             state.isRefreshing = false;
-            // state.isLoading = false;
             state.error = null;
         })
         .addCase(refreshCurrentUser.rejected, (state, { payload }) => {
-            // state.isLoading = false;
             state.isRefreshing = false;
             state.error = payload;
         })
@@ -139,40 +141,34 @@ const authSlice = createSlice({
 
         // UPDATE USER INORMATION////////
         .addCase(updateUserInfo.pending, state => {
-            // state.isLoading = true;
             state.error = null;
+            state.isSettingsUpdated = false;
         })
         .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
-            state.user = {
-                name: payload.username,
-                email: payload.email,
-                role: payload.role,
-                password: payload.password,
-            };
             state.isLoggedIn = true;
-            // state.isLoading = false;
+            state.isSettingsUpdated = true;
             state.error = null;
         })
         .addCase(updateUserInfo.rejected, (state, { payload }) => {
-            // state.isLoading = false;
+            state.isSettingsUpdated = false;
             state.error = payload;
         })
 
         
         // UPDATE AVATAR/////
         .addCase(updateUserAvatar.pending, state => {
-            // state.isLoading = true;
             state.error = null;
+            state.isSettingsUpdated = false;
         })
         .addCase(updateUserAvatar.fulfilled, (state, { payload }) => {
             state.avatarURL = payload.avatarURL;
+            state.isSettingsUpdated = true;
             state.isLoggedIn = true;
-            // state.isLoading = false;
             state.error = null;
         })
         .addCase(updateUserAvatar.rejected, (state, { payload }) => {
-            // state.isLoading = false;
             state.error = payload;
+            state.isSettingsUpdated = false;
         })
     }
 });
@@ -182,6 +178,7 @@ const authSlice = createSlice({
 export const authReducer = authSlice.reducer;
 
 
-export const { 
+export const {
+    isSettingsUpdatedtoFalse, 
     saveUserCurrentLocation,
 } = authSlice.actions;

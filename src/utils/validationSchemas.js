@@ -8,25 +8,50 @@ const passwordRules = /^(?=.*[a-zA-Z\d@$!%*?&-]).{8,}$/;
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
+    .trim()
     .min(2, "Too Short!")
     .max(30, "Too Long!")
     .required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
+  email: Yup.string()
+    .trim()
+    .email("Invalid email")
+    .required("Required"),
   password: Yup.string()
+    .trim()
     .min(8, "Must be at least 8 characters")
     .max(50, "Too Long!")
     .matches(passwordRules, "Must be A-z, 1-9")
     .required("Required"),
 });
 
+
 const SigninSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string().required("Required"),
+  email: Yup.string()
+    .trim()
+    .email("Invalid email")
+    .required("Required"),
+  password: Yup.string()
+    .trim()
+    .required("Required"),
 });
 
+
+const SettingsSchema = Yup.object({
+  currentPassword: Yup.string()
+    .trim()
+    .min(8, "Must be 8 characters")
+    .max(50, "Too Long!")
+    .matches(passwordRules, "Must be A-z, 1-9"),
+  newPassword: Yup.string()
+    .trim()
+    .min(8, "Must be 8 characters")
+    .max(50, "Too Long!")
+    .matches(passwordRules, "Must be A-z, 1-9"),
+});
 
 
 export {
   SignupSchema,
   SigninSchema,
+  SettingsSchema,
 };

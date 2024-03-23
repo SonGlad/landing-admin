@@ -1,5 +1,5 @@
 import { SharedLayout } from "./SharedLayout";
-import { Route, Routes} from "react-router-dom";
+import { Route, Routes, Navigate} from "react-router-dom";
 import { lazy, useEffect } from "react";
 import { Toaster } from "./ToastContainer/ToastContainer";
 import { RefreshLoading } from "../components/CustomLoaders/CustomLoaders";
@@ -8,8 +8,8 @@ import { useDispatch} from "react-redux";
 import { refreshCurrentUser } from "../redux/Auth/auth-operation";
 import { Modal } from "./Modal/Modal";
 import { useModal } from "../hooks/useModal";
-// import { PrivateRoute } from "./PrivateRoute";
-// import { RestrictedRoute } from "./RestrictedRoute";
+import { RestrictedRoute } from "../routes/RestrictedRoute";
+// import { PrivateRoute } from "../routes/PrivateRoute";
 
 
 const HomePage = lazy(() => import('../pages/Home/Home'));
@@ -37,9 +37,13 @@ export const App= () => {
       <Routes>
         <Route path='/' element = {<SharedLayout/>}>
           <Route index element={<HomePage/>}/>
-          {/* <Route path='*' element = {<Navigate to="/"/>}/> */}
-          <Route path='/signup' element = {<RegisterPage/>}/>
-          <Route path='/signin' element = {<LoginPage/>}/>
+          <Route path='*' element = {<Navigate to="/"/>}/>
+          <Route path="/signup" element={
+            <RestrictedRoute redirectTo="/" component={<RegisterPage/>} />
+          }/>
+          <Route path="/signin" element={
+            <RestrictedRoute redirectTo="/" component={<LoginPage/>} />
+          }/>
         </Route>    
       </Routes>
       {(isSettingsModal) && <Modal/>}

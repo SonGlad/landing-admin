@@ -83,7 +83,7 @@ export const updateUserInfo = createAsyncThunk(
             toast.success('Your User information has been successfully updated');
             return response.data;
         } catch (error) {
-            toast.error('Oops. Something went wrong. Please try again.');
+            toast.error(`Oops... ${error.response.data.message}`);
             return thunkApi.rejectWithValue(error.message);
         }
     }
@@ -94,7 +94,7 @@ export const updateUserAvatar = createAsyncThunk(
     'users/avatars',
     async (formData, thunkApi) => {
       try {
-        const response = await axios.put(`users/avatars`, formData, {
+        const response = await axios.patch(`users/avatars`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

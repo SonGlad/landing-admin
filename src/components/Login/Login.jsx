@@ -55,7 +55,7 @@ export const Login = () => {
                         placeholder="E-mail"
                         type="email"
                         onChange={handleChange}
-                        value={values.email}
+                        value={values.email.trim()}
                         onBlur={handleBlur}
                     />
                     {getInputAlert("email")}
@@ -68,7 +68,7 @@ export const Login = () => {
                         placeholder="Password"
                         type={showPassword ? "text" : "password"}
                         onChange={handleChange}
-                        value={values.password}
+                        value={values.password.trim()}
                         onBlur={handleBlur}
                         onKeyDown={handleChange}
                     />

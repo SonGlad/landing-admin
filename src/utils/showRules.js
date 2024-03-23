@@ -2,6 +2,8 @@ import { useState } from "react";
 
 export const ShowRules = (values, touched, errors) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordNew, setShowPasswordNew] = useState(false);
+
 
   const getInputClass = (fieldName) => {
     return !values[fieldName]
@@ -27,6 +29,7 @@ export const ShowRules = (values, touched, errors) => {
     );
   };
 
+
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
@@ -40,5 +43,27 @@ export const ShowRules = (values, touched, errors) => {
     );
   };
 
-  return { showPassword, getInputClass, getInputAlert, getHidePassword };
+
+
+  const handleTogglePasswordNew = () => {
+    setShowPasswordNew((prevShowPasswordNew) => !prevShowPasswordNew);
+  };
+
+  const getHidePasswordNew = () => {
+    return (
+      <div
+        className={showPasswordNew ? "HidePasswordNew" : "ShowPasswordNew"}
+        onClick={handleTogglePasswordNew}
+      />
+    );
+  };
+
+  return { 
+    showPassword, 
+    showPasswordNew, 
+    getInputClass, 
+    getInputAlert, 
+    getHidePassword, 
+    getHidePasswordNew  
+  };
 };
