@@ -1,4 +1,4 @@
-import { StyledUserMenu } from "./userMenu.styled";
+import { StyledUserMenu } from "./UserMenu.styled";
 import { ReactComponent as ArrowDown } from '../../../images/svg-icons/arrow-down.svg';
 import { ReactComponent as SettingIcon2 } from '../../../images/svg-icons/setting-2.svg';
 import { ReactComponent as LogoutIcon } from '../../../images/svg-icons/logout.svg';
