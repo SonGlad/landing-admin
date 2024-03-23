@@ -3,12 +3,12 @@ import { useFormik } from "formik";
 import { NavLink } from "react-router-dom";
 import { SignupSchema } from "../../utils/validationSchemas";
 import { ShowRules } from "../../utils/showRules";
-// import { useDispatch } from "react-redux";
-// import { saveSignUpForm } from "../../../redux/Auth/auth-slice";
-// import { useAuth } from "hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/Auth/auth-operation";
 
 
 export const Register = () => {
+    const dispatch = useDispatch();
     const {
     values,
     errors,
@@ -28,10 +28,11 @@ export const Register = () => {
         validationSchema: SignupSchema,
 
         onSubmit: (values) => {
-            console.log(values.name);
-            console.log(values.email);
-            console.log(values.password);
-
+            dispatch(register({
+                username: values.name,
+                email: values.email,
+                password: values.password
+            }))
             resetForm();
         },
     });

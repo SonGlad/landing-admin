@@ -3,12 +3,12 @@ import { useFormik } from "formik";
 import { NavLink } from "react-router-dom";
 import { SigninSchema } from "../../utils/validationSchemas";
 import { ShowRules } from "../../utils/showRules";
-// import { useDispatch } from "react-redux";
-// import { saveSignUpForm } from "../../../redux/Auth/auth-slice";
-// import { useAuth } from "hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../redux/Auth/auth-operation";
 
 
 export const Login = () => {
+    const dispatch = useDispatch();
     const {
         values,
         errors,
@@ -20,7 +20,6 @@ export const Login = () => {
         resetForm,
         } = useFormik({
             initialValues: {
-                name: "",
                 email: "",
                 password: "",
             },
@@ -28,9 +27,7 @@ export const Login = () => {
             validationSchema: SigninSchema,
     
             onSubmit: (values) => {
-                console.log(values.email);
-                console.log(values.password);
-
+                dispatch(logIn(values))
                 resetForm();
             },
         });
