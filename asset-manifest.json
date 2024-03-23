@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/landing-admin/static/css/main.55104f0a.css",
-    "main.js": "/landing-admin/static/js/main.80770ab8.js",
+    "main.css": "/landing-admin/static/css/main.faa85ff7.css",
+    "main.js": "/landing-admin/static/js/main.fb5420c3.js",
     "static/js/848.845e9c9b.chunk.js": "/landing-admin/static/js/848.845e9c9b.chunk.js",
     "static/js/63.2463159d.chunk.js": "/landing-admin/static/js/63.2463159d.chunk.js",
     "static/js/253.32fbf215.chunk.js": "/landing-admin/static/js/253.32fbf215.chunk.js",
@@ -11,19 +11,22 @@
     "static/media/register.jpg": "/landing-admin/static/media/register.4099ca13b48692a448bf.jpg",
     "static/media/login.jpg": "/landing-admin/static/media/login.be6cad9a16bee7730635.jpg",
     "index.html": "/landing-admin/index.html",
+    "static/media/setting-2.svg": "/landing-admin/static/media/setting-2.fcb7be46dc70ad25f95b1d594eb1679e.svg",
     "static/media/eye-off.svg": "/landing-admin/static/media/eye-off.7632c81a03355c13eedd1d6fa36ddc91.svg",
     "static/media/error.svg": "/landing-admin/static/media/error.1ab54f6659bb9cc02881f20e49af7e39.svg",
     "static/media/eye.svg": "/landing-admin/static/media/eye.6b00c3608d2b95883cbcd085afe1b291.svg",
+    "static/media/logout.svg": "/landing-admin/static/media/logout.47d6d0dc6aaf1e004df43c1b52b80148.svg",
     "static/media/correct.svg": "/landing-admin/static/media/correct.b5b7505624f3a38a8b7994508d630e79.svg",
-    "main.55104f0a.css.map": "/landing-admin/static/css/main.55104f0a.css.map",
-    "main.80770ab8.js.map": "/landing-admin/static/js/main.80770ab8.js.map",
+    "static/media/arrow-down.svg": "/landing-admin/static/media/arrow-down.e3ed7849216bb46de413bbb56a4a7bcf.svg",
+    "main.faa85ff7.css.map": "/landing-admin/static/css/main.faa85ff7.css.map",
+    "main.fb5420c3.js.map": "/landing-admin/static/js/main.fb5420c3.js.map",
     "848.845e9c9b.chunk.js.map": "/landing-admin/static/js/848.845e9c9b.chunk.js.map",
     "63.2463159d.chunk.js.map": "/landing-admin/static/js/63.2463159d.chunk.js.map",
     "253.32fbf215.chunk.js.map": "/landing-admin/static/js/253.32fbf215.chunk.js.map",
     "306.2860e255.chunk.js.map": "/landing-admin/static/js/306.2860e255.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.55104f0a.css",
-    "static/js/main.80770ab8.js"
+    "static/css/main.faa85ff7.css",
+    "static/js/main.fb5420c3.js"
   ]
 }
