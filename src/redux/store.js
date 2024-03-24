@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './Auth/auth-slice';
-// import { dataReducer } from './Data/data-slice';
+import { dataReducer } from './Data/data-slice';
 import { modalReducer } from './Modal/modal-slice';
 
 import { 
@@ -26,11 +26,13 @@ const authPersistConfig = {
 };
 
 
-// const dataPersistConfig = {
-//   key: 'data',
-//   storage,
-//   whitelist: [],
-// };
+const dataPersistConfig = {
+  key: "data",
+  storage,
+  whitelist: [
+    'selectedCheckedCheckbox'
+  ],
+};
 
 
 const modalPersistConfig = {
@@ -41,7 +43,7 @@ const modalPersistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
-//   data: persistReducer(dataPersistConfig, dataReducer),
+  data: persistReducer(dataPersistConfig, dataReducer),
   modal: persistReducer(modalPersistConfig, modalReducer),
 
 })
