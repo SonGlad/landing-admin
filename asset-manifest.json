@@ -1,32 +1,38 @@
 {
   "files": {
     "main.css": "/landing-admin/static/css/main.faa85ff7.css",
-    "main.js": "/landing-admin/static/js/main.5a2a6692.js",
-    "static/js/181.3d08d01c.chunk.js": "/landing-admin/static/js/181.3d08d01c.chunk.js",
+    "main.js": "/landing-admin/static/js/main.befb7b96.js",
+    "static/js/298.52a9197c.chunk.js": "/landing-admin/static/js/298.52a9197c.chunk.js",
     "static/js/63.ac8f50b4.chunk.js": "/landing-admin/static/js/63.ac8f50b4.chunk.js",
     "static/js/253.d74a6afc.chunk.js": "/landing-admin/static/js/253.d74a6afc.chunk.js",
     "static/media/logo.png": "/landing-admin/static/media/logo.131272d95d0b2cdca194.png",
     "static/media/welcome.jpg": "/landing-admin/static/media/welcome.57600995f5f383d4bc1f.jpg",
     "static/media/register.jpg": "/landing-admin/static/media/register.4099ca13b48692a448bf.jpg",
     "static/media/login.jpg": "/landing-admin/static/media/login.be6cad9a16bee7730635.jpg",
+    "static/media/check.svg": "/landing-admin/static/media/check.63e799811dea31a9c132f4805882a2d8.svg",
     "index.html": "/landing-admin/index.html",
     "static/media/download-new-photo.svg": "/landing-admin/static/media/download-new-photo.34b30d62fc6ed94418936f3e836c0d1d.svg",
     "static/media/setting-2.svg": "/landing-admin/static/media/setting-2.fcb7be46dc70ad25f95b1d594eb1679e.svg",
+    "static/media/trash.svg": "/landing-admin/static/media/trash.9bb3d2fbf783468731196c8ac0b6cb11.svg",
     "static/media/eye-off.svg": "/landing-admin/static/media/eye-off.7632c81a03355c13eedd1d6fa36ddc91.svg",
     "static/media/error.svg": "/landing-admin/static/media/error.1ab54f6659bb9cc02881f20e49af7e39.svg",
     "static/media/close.svg": "/landing-admin/static/media/close.9cb1a87627ef012af4a24f1b68fb9e45.svg",
     "static/media/eye.svg": "/landing-admin/static/media/eye.6b00c3608d2b95883cbcd085afe1b291.svg",
+    "static/media/email.svg": "/landing-admin/static/media/email.c74f4d10a115e14ec4a72cf313b26d24.svg",
     "static/media/logout.svg": "/landing-admin/static/media/logout.47d6d0dc6aaf1e004df43c1b52b80148.svg",
+    "static/media/user.svg": "/landing-admin/static/media/user.1c1a09120a317ba44e35daaa99752a9e.svg",
     "static/media/correct.svg": "/landing-admin/static/media/correct.b5b7505624f3a38a8b7994508d630e79.svg",
+    "static/media/phone.svg": "/landing-admin/static/media/phone.03ea016d461b0f39f66d26a191333687.svg",
     "static/media/arrow-down.svg": "/landing-admin/static/media/arrow-down.e3ed7849216bb46de413bbb56a4a7bcf.svg",
+    "static/media/rectangle.svg": "/landing-admin/static/media/rectangle.af5d8beb8f5f3f1af0c205247f99f614.svg",
     "main.faa85ff7.css.map": "/landing-admin/static/css/main.faa85ff7.css.map",
-    "main.5a2a6692.js.map": "/landing-admin/static/js/main.5a2a6692.js.map",
-    "181.3d08d01c.chunk.js.map": "/landing-admin/static/js/181.3d08d01c.chunk.js.map",
+    "main.befb7b96.js.map": "/landing-admin/static/js/main.befb7b96.js.map",
+    "298.52a9197c.chunk.js.map": "/landing-admin/static/js/298.52a9197c.chunk.js.map",
     "63.ac8f50b4.chunk.js.map": "/landing-admin/static/js/63.ac8f50b4.chunk.js.map",
     "253.d74a6afc.chunk.js.map": "/landing-admin/static/js/253.d74a6afc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.faa85ff7.css",
-    "static/js/main.5a2a6692.js"
+    "static/js/main.befb7b96.js"
   ]
 }
