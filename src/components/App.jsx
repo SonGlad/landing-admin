@@ -20,7 +20,7 @@ const LoginPage = lazy(() => import('../pages/Login/Login'));
 export const App= () => {
   const dispatch = useDispatch();
   const {isLoadingAuth, isRefreshing} = useAuth();
-  const {isSettingsModal} = useModal();
+  const {isSettingsModal, isCreateContactModal} = useModal();
 
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export const App= () => {
           }/>
         </Route>    
       </Routes>
-      {(isSettingsModal) && <Modal/>}
+      {(isSettingsModal || isCreateContactModal) && <Modal/>}
     </>
   )
 };

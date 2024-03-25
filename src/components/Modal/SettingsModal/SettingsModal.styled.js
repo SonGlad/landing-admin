@@ -20,8 +20,6 @@ export const SettingsModalStyled = styled.div`
     position: relative;
 
     @media only screen and (min-width: 834px) {
-        /* width: 708px;
-        height: 408px; */
         padding: 25px;
     }
 

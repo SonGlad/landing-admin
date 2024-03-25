@@ -2,9 +2,13 @@ import { ModalStyled } from "./Modal.styled";
 import { createPortal } from "react-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useCallback} from "react";
-import { closeModalSettings } from "../../redux/Modal/modal-slice";
+import { 
+    closeModalSettings, 
+    closeModalCreateContact, 
+} from "../../redux/Modal/modal-slice";
 import { useModal } from "../../hooks/useModal";
 import { SettingsModal } from "./SettingsModal/SettingsModal";
+import { CreateContactModal } from "./CreateContactModal/CreateContactModal";
 
 
 const modalRoot = document.querySelector("#modal-root");
@@ -12,14 +16,17 @@ const modalRoot = document.querySelector("#modal-root");
 
 export const Modal = () => {
     const dispatch = useDispatch();
-    const {isSettingsModal} = useModal();
+    const {isSettingsModal, isCreateContactModal} = useModal();
 
 
     const handleClickClose = useCallback(() => {
         if (isSettingsModal){
             dispatch(closeModalSettings());
         }
-    },[dispatch, isSettingsModal]);
+        if(isCreateContactModal) {
+            dispatch(closeModalCreateContact());
+        }
+    },[dispatch, isCreateContactModal, isSettingsModal]);
 
 
     const handleBackdropClick = useCallback(event => {
@@ -49,10 +56,13 @@ export const Modal = () => {
 
     
     return createPortal(
-        (isSettingsModal) && (
+        (isSettingsModal || isCreateContactModal) && (
             <ModalStyled onClick={handleBackdropClick}>
                 {isSettingsModal && (
                     <SettingsModal handleClickClose={handleClickClose}/>
+                )}
+                {isCreateContactModal && (
+                    <CreateContactModal handleClickClose={handleClickClose}/>
                 )}
             </ModalStyled>
         ),

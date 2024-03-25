@@ -1,14 +1,17 @@
 import { useSelector } from "react-redux";
 import {
     selectSettingsModal,
+    selectCreateContactModal,
 } from "../redux/Modal/modal-selectors.js";
 
 
 export const useModal = () => {
     const isSettingsModal = useSelector(selectSettingsModal);
+    const isCreateContactModal= useSelector(selectCreateContactModal);
 
 
     return {
         isSettingsModal,
+        isCreateContactModal,
     }
 };

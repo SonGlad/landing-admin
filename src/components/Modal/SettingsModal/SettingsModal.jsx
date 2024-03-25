@@ -1,14 +1,14 @@
 import { SettingsModalStyled } from "./SettingsModal.styled";
 import {ReactComponent as CloseIcon} from "../../../images/svg-icons/close.svg";
+import {ReactComponent as DownloadIcon} from "../../../images/svg-icons/download-new-photo.svg";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { useState, useEffect} from "react";
 import { SettingsSchema } from "../../../utils/validationSchemas";
 import { ShowRules } from "../../../utils/showRules";
-import {ReactComponent as DownloadIcon} from "../../../images/svg-icons/download-new-photo.svg";
 import { useAuth } from "../../../hooks/useAuth";
-import {closeModalSettings} from "../../../redux/Modal/modal-slice";
-import {isSettingsUpdatedtoFalse} from "../../../redux/Auth/auth-slice";
+import { closeModalSettings } from "../../../redux/Modal/modal-slice";
+import { isSettingsUpdatedtoFalse } from "../../../redux/Auth/auth-slice";
 import { updateUserInfo, updateUserAvatar } from "../../../redux/Auth/auth-operation";
 
 

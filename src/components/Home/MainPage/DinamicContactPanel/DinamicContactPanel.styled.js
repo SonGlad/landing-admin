@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 
-export const StyledAllContactsPanel = styled.div`
+export const StyledDinamicContactPanel = styled.div`
+    display: contents;
 
     .content-container{
         display: flex;
@@ -32,8 +33,8 @@ export const StyledAllContactsPanel = styled.div`
     .content-title.expanded{
         transform: rotate(0);
         display: block;
-        margin-bottom: 10px;
         text-align: center;
+        margin-bottom: 10px;
 
         &::first-letter{
             text-transform: uppercase;
