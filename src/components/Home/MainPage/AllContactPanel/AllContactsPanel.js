@@ -1,28 +1,7 @@
 import styled from "styled-components";
 
 
-export const StyledMainPage = styled.div`
-    display: flex;
-    gap: 15px;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 20px;
-
-    .info-cont{
-        width: 100%;
-    }
-
-    .main-content{
-        background-color: ${p => p.theme.color.primary_black_2};
-        width: 100%;
-        height: 750px;
-        border-radius: 15px;
-        box-shadow: 4px 0px 15px 2px rgba(227, 255, 168, 0.2);
-        padding: 10px;
-        display: flex;
-        gap: 5px;
-    }
-
+export const StyledAllContactsPanel = styled.div`
     .content-container{
         display: flex;
         align-items: center;
@@ -52,8 +31,8 @@ export const StyledMainPage = styled.div`
     .content-title.expanded{
         transform: rotate(0);
         display: block;
-        text-align: center;
         margin-bottom: 10px;
+        text-align: center;
 
         &::first-letter{
             text-transform: uppercase;
@@ -84,6 +63,27 @@ export const StyledMainPage = styled.div`
 
 
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

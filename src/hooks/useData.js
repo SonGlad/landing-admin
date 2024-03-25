@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import {
     selectContacts,
+    selectContactsByResource,
     selectLoading,
     selectFilter,
     selectCheckbox
@@ -9,6 +10,7 @@ import {
 
 export const useData = () => {
     const isContacts = useSelector(selectContacts);
+    const isContactsByResource = useSelector(selectContactsByResource)
     const isLoadingContacts = useSelector(selectLoading);
     const isFilter = useSelector(selectFilter);
     const isCheckbox = useSelector(selectCheckbox);
@@ -16,6 +18,7 @@ export const useData = () => {
 
     return {
         isContacts,
+        isContactsByResource,
         isLoadingContacts,
         isFilter,
         isCheckbox

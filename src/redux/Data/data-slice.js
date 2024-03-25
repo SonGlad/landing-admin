@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { 
-    getAllContacts, 
+    getAllContacts,
+    getAllByResource, 
     createNewContact, 
     updateContactById,
     updateNewContactById,
@@ -10,6 +11,7 @@ import {
 
 const initialState = {
     contacts: [],
+    contactsByResource: [],
     isLoading: false,
     error: null,
     filter: '',
@@ -62,7 +64,7 @@ const dataSlice = createSlice({
             state.error = null;
         })
         .addCase(getAllContacts.fulfilled, (state, { payload }) => {
-            state.contacts = payload.contacts
+            state.contacts = payload
             state.isLoading = false;
             state.error = null;
         })
@@ -70,6 +72,23 @@ const dataSlice = createSlice({
           state.isLoading = false;
           state.token = null;
           state.error = payload;
+        })
+
+
+        // GET ALL CONTACTS BY RESOURCE///////////
+        .addCase(getAllByResource.pending, state =>{
+            state.isLoading = true;
+            state.error = null;
+        })
+        .addCase(getAllByResource.fulfilled, (state, { payload }) => {
+            state.contactsByResource = payload
+            state.isLoading = false;
+            state.error = null;
+        })
+        .addCase(getAllByResource.rejected, (state, {payload}) => {
+            state.isLoading = false;
+            state.token = null;
+            state.error = payload;
         })
 
 

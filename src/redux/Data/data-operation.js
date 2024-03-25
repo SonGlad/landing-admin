@@ -5,11 +5,27 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 export const getAllContacts = createAsyncThunk(
-    'api/contacts',
+    'api/contacts/all',
     async (_, thunkApi) => {
 
         try {
-            const response = await axios.get('api/contacts');
+            const response = await axios.get('api/contacts/all');
+            return response.data;
+
+        } catch (error) {
+            toast.error('Oops. Something went wrong. Please try again.');
+            return thunkApi.rejectWithValue(error.message);
+        }
+    }
+);
+
+
+export const getAllByResource = createAsyncThunk(
+    'api/contacts/allbyresource',
+    async (_, thunkApi) => {
+
+        try {
+            const response = await axios.get('api/contacts/allbyresource');
             return response.data;
 
         } catch (error) {

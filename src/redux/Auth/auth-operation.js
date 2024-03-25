@@ -31,7 +31,6 @@ export const logIn = createAsyncThunk(
             return response.data;
         }
         catch(error){
-            console.log(error.response.data.message);
             toast.error(`Oops. Your ${error.response.data.message}`);
             return thunkApi.rejectWithValue(error.message);
         }

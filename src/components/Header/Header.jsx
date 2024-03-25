@@ -12,7 +12,7 @@ export const Header = () => {
 
 
     return(
-        <StyledHeader>
+        <StyledHeader $isloggedin={isLoggedIn}>
             <Container>
                 <StyledHeaderContainer>
                     <Navigation/>
