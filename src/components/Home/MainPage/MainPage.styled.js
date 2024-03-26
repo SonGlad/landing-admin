@@ -22,4 +22,14 @@ export const StyledMainPage = styled.div`
         display: flex;
         gap: 5px;
     }
+
+    ::-webkit-scrollbar {
+        width: 3px;
+        background-color: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: ${p => p.theme.color.primary_grey};
+        border-radius: 50%;
+    }
 `

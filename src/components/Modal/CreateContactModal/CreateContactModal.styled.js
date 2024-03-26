@@ -18,14 +18,15 @@ export const StyledCreateContactModal = styled.div`
     position: relative;
 
     @media only screen and (min-width: 834px) {
-        padding: 25px;
+        padding-top: 5px;
+        padding-bottom: 10px;
     }
 
     .close-btn{
         position: absolute;
         z-index: 20;
-        top: 10px;
-        right: 10px;
+        top: 15px;
+        right: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -69,7 +70,7 @@ export const StyledCreateContactModal = styled.div`
         font-weight: 500;
         font-size: 30px;
         line-height: 1.2;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     .create-contact-form{
@@ -145,6 +146,17 @@ export const StyledCreateContactModal = styled.div`
 
 
 
+
+
+
+
+
+
+
+
+
+
+
     .react-tel-input .flag-dropdown.open {
         background: transparent;
     }
@@ -191,6 +203,14 @@ export const StyledCreateContactModal = styled.div`
     .react-tel-input .country-list .country:hover {
         background-color: ${p => p.theme.color.primary_violet};
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -253,16 +273,91 @@ export const StyledCreateContactModal = styled.div`
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     .radio-btn-list{
         display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
+        align-items: flex-start;
+        gap: 12px;
         flex-wrap: wrap;
     }
 
     .radio-btn-item{
         width: 32%;
+        padding: 5px;
+        border: 1px solid ${props => props.theme.color.primary_green_lite};
+        border-radius: 12px;
+    }
+
+    .radio-btn-item-title{
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .LabelActivity {
+        position: relative;
+        align-items: center;
+        display: flex;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 20px;
+        margin-bottom: 10px;
+        padding-left: 8px;
+    }
+
+    .radio-btn-input {
+        height: 12px;
+        width: 12px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: none;
+        cursor: pointer;
+        margin-right: 8px;
+        border-radius: 50%;
+        padding: 0;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background-color: ${props => props.theme.color.primary_black_2};
+            border: 1px solid ${props => props.theme.color.primary_grey};
+        }
+
+        &:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: ${props => props.theme.color.primary_green_lite};
+            transform: translate(-50%, -50%);
+            visibility: visible;
+        }
     }
 
 
@@ -318,7 +413,7 @@ export const StyledCreateContactModal = styled.div`
         display: flex;
         flex-direction: column;
         gap: 12px;
-        margin-top: 20px;
+        /* margin-top: 20px; */
         align-items: center;
         justify-content: center;
 

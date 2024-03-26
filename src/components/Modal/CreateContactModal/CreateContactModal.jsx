@@ -31,6 +31,12 @@ export const CreateContactModal = ({handleClickClose}) => {
             surname: "",
             email: "",
             phone: phoneNumber,
+            trading: "",
+            profitGoal: "",
+            riskTolerance: "",
+            expirience: "",
+            investment: "",
+            time: "",
             resource: userRole,
         },
         
@@ -41,25 +47,46 @@ export const CreateContactModal = ({handleClickClose}) => {
         onSubmit: (values) => {
             const phoneNumberWithPlus = '+' + phoneNumber;
             const formattedNumber = new AsYouType().input(phoneNumberWithPlus);
+            const tradingBoolean = Boolean(values.trading);
             console.log(values.name);
             console.log(values.surname);
             console.log(values.email);
             console.log(formattedNumber);
+            console.log(tradingBoolean);
+            console.log(values.profitGoal);
+            console.log(values.riskTolerance);
+            console.log(values.expirience);
+            console.log(values.investment);
+            console.log(values.time);
             console.log(values.resource);
+
 
             resetForm({
                 values: {
                     name: '',
                     surname: '',
                     email: '',
-                    phone: ''
+                    phone: '',
+                    trading: '',
+                    profitGoal: '',
+                    riskTolerance: '',
+                    expirience: '',
+                    investment: '',
+                    time: '',
                 },
-            })
+            });
             setPhoneNumber('')
         },
     });
 
-    
+    console.log(values.trading);
+    console.log(values.profitGoal);
+    console.log(values.riskTolerance);
+    console.log(values.expirience);
+    console.log(values.investment);
+    console.log(values.time);
+
+
     const {
         getInputClass,
         getInputAlert,
@@ -69,6 +96,7 @@ export const CreateContactModal = ({handleClickClose}) => {
     const handleCancel = () => {
         resetForm();
         setFormChanged(false);
+        setPhoneNumber('')
     };
 
 
@@ -170,27 +198,320 @@ export const CreateContactModal = ({handleClickClose}) => {
                 <ul className="radio-btn-list">
                     <li className="radio-btn-item">
                         <p className="radio-btn-item-title">Trading Experience</p>
-
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="yes"
+                                name="trading"
+                                type="radio"
+                                onChange={handleChange}
+                                value={true}
+                                onBlur={handleBlur}
+                                checked={values.trading === "true"}
+                            />
+                            Yes
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="no"
+                                name="trading"
+                                type="radio"
+                                onChange={handleChange}
+                                value={false}
+                                onBlur={handleBlur}
+                                checked={values.trading === "false"}
+                            />
+                            No
+                        </label>
                     </li>
                     <li className="radio-btn-item">
                         <p className="radio-btn-item-title">Profit Goal</p>
-
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="conservative"
+                                name="profitGoal"
+                                type="radio"
+                                onChange={handleChange}
+                                value='conservative'
+                                onBlur={handleBlur}
+                                checked={values.profitGoal === "conservative"}
+                            />
+                            Conservative
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="moderate"
+                                name="profitGoal"
+                                type="radio"
+                                onChange={handleChange}
+                                value='moderate'
+                                onBlur={handleBlur}
+                                checked={values.profitGoal === "moderate"}
+                            />
+                            Moderate
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="aggressive"
+                                name="profitGoal"
+                                type="radio"
+                                onChange={handleChange}
+                                value='aggressive'
+                                onBlur={handleBlur}
+                                checked={values.profitGoal === "aggressive"}
+                            />
+                            Aggressive
+                        </label>
                     </li>
                     <li className="radio-btn-item">
                         <p className="radio-btn-item-title">Risk Tolerance</p>
-
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="low"
+                                name="riskTolerance"
+                                type="radio"
+                                onChange={handleChange}
+                                value='low'
+                                onBlur={handleBlur}
+                                checked={values.riskTolerance === "low"}
+                            />
+                            Low
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="medium"
+                                name="riskTolerance"
+                                type="radio"
+                                onChange={handleChange}
+                                value='medium'
+                                onBlur={handleBlur}
+                                checked={values.riskTolerance === "medium"}
+                            />
+                            Medium
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="high"
+                                name="riskTolerance"
+                                type="radio"
+                                onChange={handleChange}
+                                value='high'
+                                onBlur={handleBlur}
+                                checked={values.riskTolerance === "high"}
+                            />
+                            High
+                        </label>
                     </li> 
                     <li className="radio-btn-item">
                         <p className="radio-btn-item-title">Level of Trading</p>
-
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="beginner"
+                                name="expirience"
+                                type="radio"
+                                onChange={handleChange}
+                                value='beginner'
+                                onBlur={handleBlur}
+                                checked={values.expirience === "beginner"}
+                            />
+                            Beginner
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="novice"
+                                name="expirience"
+                                type="radio"
+                                onChange={handleChange}
+                                value='novice'
+                                onBlur={handleBlur}
+                                checked={values.expirience === "novice"}
+                            />
+                            Novice
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="intermediate"
+                                name="expirience"
+                                type="radio"
+                                onChange={handleChange}
+                                value='intermediate'
+                                onBlur={handleBlur}
+                                checked={values.expirience === "intermediate"}
+                            />
+                            Intermediate
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="advanced"
+                                name="expirience"
+                                type="radio"
+                                onChange={handleChange}
+                                value='advanced'
+                                onBlur={handleBlur}
+                                checked={values.expirience === "advanced"}
+                            />
+                            Advanced
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="expert"
+                                name="expirience"
+                                type="radio"
+                                onChange={handleChange}
+                                value='expert'
+                                onBlur={handleBlur}
+                                checked={values.expirience === "expert"}
+                            />
+                            Expert
+                        </label>
                     </li>
                     <li className="radio-btn-item">
                         <p className="radio-btn-item-title">Investment Range</p>
-
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="0-500"
+                                name="investment"
+                                type="radio"
+                                onChange={handleChange}
+                                value='0-500'
+                                onBlur={handleBlur}
+                                checked={values.investment === "0-500"}
+                            />
+                            0$ - 500$
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="500-2500"
+                                name="investment"
+                                type="radio"
+                                onChange={handleChange}
+                                value='500-2500'
+                                onBlur={handleBlur}
+                                checked={values.investment === "500-2500"}
+                            />
+                            500$ - 2500$
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="2500-5000"
+                                name="investment"
+                                type="radio"
+                                onChange={handleChange}
+                                value='2500-5000'
+                                onBlur={handleBlur}
+                                checked={values.investment === "2500-5000"}
+                            />
+                            2500$ - 5000$
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="5000-10000"
+                                name="investment"
+                                type="radio"
+                                onChange={handleChange}
+                                value='5000-10000'
+                                onBlur={handleBlur}
+                                checked={values.investment === "5000-10000"}
+                            />
+                            5000$ - 10000$
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="10000+"
+                                name="investment"
+                                type="radio"
+                                onChange={handleChange}
+                                value='10000+'
+                                onBlur={handleBlur}
+                                checked={values.investment === "10000+"}
+                            />
+                            &#62; 10000$
+                        </label>
                     </li>
                     <li className="radio-btn-item">
                         <p className="radio-btn-item-title">Weekly Trading Hours</p>
-
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="0-5"
+                                name="time"
+                                type="radio"
+                                onChange={handleChange}
+                                value='0-5'
+                                onBlur={handleBlur}
+                                checked={values.time === "0-5"}
+                            />
+                            0-5 Hours
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="5-10"
+                                name="time"
+                                type="radio"
+                                onChange={handleChange}
+                                value='5-10'
+                                onBlur={handleBlur}
+                                checked={values.time === "5-10"}
+                            />
+                            5-10 Hours
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="10-15"
+                                name="time"
+                                type="radio"
+                                onChange={handleChange}
+                                value='10-15'
+                                onBlur={handleBlur}
+                                checked={values.time === "10-15"}
+                            />
+                            10-15 Hours
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="15-20"
+                                name="time"
+                                type="radio"
+                                onChange={handleChange}
+                                value='15-20'
+                                onBlur={handleBlur}
+                                checked={values.time === "15-20"}
+                            />
+                            15-20 Hours
+                        </label>
+                        <label className="LabelActivity" htmlFor="radio-btn">
+                            <input
+                                className="radio-btn-input"
+                                id="20+"
+                                name="time"
+                                type="radio"
+                                onChange={handleChange}
+                                value='20+'
+                                onBlur={handleBlur}
+                                checked={values.time === "20+"}
+                            />
+                            &#62; 20 Hours
+                        </label>
                     </li>
                 </ul>
                 <div className="ButtonContainer">
