@@ -8,12 +8,15 @@ import 'react-phone-input-2/lib/style.css';
 import { AsYouType } from 'libphonenumber-js';
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../hooks/useAuth";
+import { createNewContact } from "../../../redux/Data/data-operation";
+import { useDispatch } from "react-redux";
 
 
 export const CreateContactModal = ({handleClickClose}) => {
     const {userRole} = useAuth();
     const [formChanged, setFormChanged] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
+    const dispatch = useDispatch();
 
 
     const {
@@ -48,43 +51,59 @@ export const CreateContactModal = ({handleClickClose}) => {
             const phoneNumberWithPlus = '+' + phoneNumber;
             const formattedNumber = new AsYouType().input(phoneNumberWithPlus);
             const tradingBoolean = Boolean(values.trading);
-            console.log(values.name);
-            console.log(values.surname);
-            console.log(values.email);
-            console.log(formattedNumber);
-            console.log(tradingBoolean);
-            console.log(values.profitGoal);
-            console.log(values.riskTolerance);
-            console.log(values.expirience);
-            console.log(values.investment);
-            console.log(values.time);
-            console.log(values.resource);
 
+            const dataToSend = {
+                name: values.name,
+                lastName: values.surname,
+                email: values.email,
+                phone: formattedNumber,
+                resource: values.resource
+            };
 
-            resetForm({
-                values: {
-                    name: '',
-                    surname: '',
-                    email: '',
-                    phone: '',
-                    trading: '',
-                    profitGoal: '',
-                    riskTolerance: '',
-                    expirience: '',
-                    investment: '',
-                    time: '',
-                },
-            });
-            setPhoneNumber('')
+            if (values.trading !== "") {
+                dataToSend.trading = tradingBoolean;
+            }
+            if (values.profitGoal !== "") {
+                dataToSend.profitGoal = values.profitGoal;
+            }
+            if (values.riskTolerance !== "") {
+                dataToSend.riskTolerance = values.riskTolerance;
+            }
+            if (values.expirience !== "") {
+                dataToSend.expirience = values.expirience;
+            }
+            if (values.investment !== "") {
+                dataToSend.investment = values.investment;
+            }
+            if (values.time !== "") {
+                dataToSend.time = values.time;
+            }
+
+            dispatch(createNewContact(dataToSend));
+
+            setPhoneNumber('');
+            formReset();
         },
     });
 
-    console.log(values.trading);
-    console.log(values.profitGoal);
-    console.log(values.riskTolerance);
-    console.log(values.expirience);
-    console.log(values.investment);
-    console.log(values.time);
+
+    const formReset = () => {
+        resetForm({
+            values: {
+                name: '',
+                surname: '',
+                email: '',
+                phone: '',
+                trading: '',
+                profitGoal: '',
+                riskTolerance: '',
+                expirience: '',
+                investment: '',
+                time: '',
+                resource: userRole,
+            },
+        });
+    }   
 
 
     const {
@@ -94,11 +113,10 @@ export const CreateContactModal = ({handleClickClose}) => {
 
 
     const handleCancel = () => {
-        resetForm();
+        formReset();
         setFormChanged(false);
         setPhoneNumber('')
     };
-
 
     useEffect(() => {
         if (

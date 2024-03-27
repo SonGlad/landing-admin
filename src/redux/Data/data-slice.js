@@ -16,7 +16,6 @@ const initialState = {
     error: null,
     filter: '',
     selectedCheckedCheckbox: [],
-    // selectedItemIDForModal: '',
 };
 
 const dataSlice = createSlice({
@@ -29,22 +28,24 @@ const dataSlice = createSlice({
         },
 
         toggleCheckboxState: (state, action) => {
-            const { contactId } = action.payload;
-            const isSelected = state.selectedCheckedCheckbox.includes(contactId);
+            const {_id} = action.payload;
+            const isSelected = state.selectedCheckedCheckbox.includes(_id);
             if (isSelected) {
-                state.selectedCheckedCheckbox = state.selectedCheckedCheckbox.filter(id => id !== contactId);
+                state.selectedCheckedCheckbox = state.selectedCheckedCheckbox.filter(id => id !== _id);
             } else {
-                state.selectedCheckedCheckbox.push(contactId);
+                state.selectedCheckedCheckbox.push(_id);
             }
         },
 
         toggleSelectAllCheckbox: (state) => {
-            const filteredContactIds = state.contacts.items.filter((contact) => {
+            const filteredContactIds = state.contacts.filter((contact) => {
                 return (
-                contact.name.toLowerCase().includes(state.filter.toLowerCase()) ||
-                contact.number.includes(state.filter)
+                    contact.name.toLowerCase().includes(state.filter.toLowerCase()) ||
+                    contact.lastName.toLowerCase().includes(state.filter.toLowerCase()) ||
+                    contact.email.toLowerCase().includes(state.filter.toLowerCase()) ||
+                    contact.phone.replace(/\D/g, '').includes(state.filter)
                 );
-            }).map((contact) => contact.id);
+            }).map((contact) => contact._id);
         
             if (state.selectedCheckedCheckbox.length === filteredContactIds.length) {
                 state.selectedCheckedCheckbox = [];
@@ -99,6 +100,16 @@ const dataSlice = createSlice({
         })
         .addCase(createNewContact.fulfilled, (state, {payload}) => {
             state.contacts.unshift(payload);
+
+            const { resource } = payload;
+            const contactsForResource = state.contactsByResource[resource] || [];
+            contactsForResource.unshift(payload);
+        
+            state.contactsByResource = {
+                ...state.contactsByResource,
+                [resource]: contactsForResource,
+            };
+
             state.isLoading = false;
             state.error = null;
         })
@@ -114,15 +125,17 @@ const dataSlice = createSlice({
             state.error = null;
         })
         .addCase(updateContactById.fulfilled, (state, { payload }) => {
-            const updatedIndex = state.contacts.items.findIndex(contact => contact.id === payload.id);
-            if (updatedIndex !== -1) {
-                state.contacts.items = state.contacts.items.map(contact => {
-                    if (contact.id === payload.id) {
-                        return payload;
-                    }
-                    return contact;
-                });
-            }
+            // const updatedIndex = state.contacts.items.findIndex(contact => contact.id === payload.id);
+            // if (updatedIndex !== -1) {
+            //     state.contacts.items = state.contacts.items.map(contact => {
+            //         if (contact.id === payload.id) {
+            //             return payload;
+            //         }
+            //         return contact;
+            //     });
+            // }
+            state.isLoading = false;
+            state.error = null;
         })
         .addCase(updateContactById.rejected, (state, {payload}) => {
             state.isLoading = false;
@@ -152,9 +165,10 @@ const dataSlice = createSlice({
             state.error = null;
         })
         .addCase(deleteContactById.fulfilled, (state, { payload }) => {
+            state.contacts = state.contacts.filter(({_id}) => _id !== payload._id)
+            state.selectedCheckedCheckbox = state.selectedCheckedCheckbox.filter(_id => _id !== payload._id);
+
             state.isLoading = false;
-            state.contacts.items = state.contacts.filter(({id}) => id !== payload)
-            state.selectedCheckedCheckbox = state.selectedCheckedCheckbox.filter(id => id !== payload);
             state.error = null;
         })
         .addCase(deleteContactById.rejected, (state, { payload }) => {

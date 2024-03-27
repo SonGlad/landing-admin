@@ -62,6 +62,7 @@ const ContactFormSchema = Yup.object().shape({
     .max(40, 'Last name is too long')
     .required("The field is required"),
   email: Yup.string()
+    .trim()
     .matches(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, 'Invalid email')
     .email("Invalid email")
     .required("The field isrequired"),

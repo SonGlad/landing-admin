@@ -6,6 +6,8 @@ const modalSlice = createSlice({
     initialState: {
         isSettingsModal: false,
         isCreateContactModal: false,
+        isUpdateContactModal: false,
+        updateContactModalData: null,
     },
 
     reducers: {
@@ -21,6 +23,15 @@ const modalSlice = createSlice({
         closeModalCreateContact: (state) => {
             state.isCreateContactModal = false;
         },
+        openModalUpdateContact: (state) => {
+            state.isUpdateContactModal = true;
+        },
+        closeModalUpdateContact: (state) => {
+            state.isUpdateContactModal = false;
+        },
+        setUpdateContactModalData: (state, action) => {
+            state.updateContactModalData = action.payload;
+        },
     },
 });
 
@@ -33,4 +44,7 @@ export const {
     closeModalSettings,
     openModalCreateContact,
     closeModalCreateContact,
+    openModalUpdateContact,
+    closeModalUpdateContact,
+    setUpdateContactModalData,
 } = modalSlice.actions;

@@ -14,7 +14,8 @@ export const StyledCreateContactModal = styled.div`
     padding-right: 15px;
     padding-bottom: 40px;
     border-radius: 12px;
-    background: ${(props) => props.theme.color.primary_black_2};
+    background: ${p => p.theme.color.primary_black_2};
+    border: 1px solid ${p => p.theme.color.secondary_color_grey_1};
     position: relative;
 
     @media only screen and (min-width: 834px) {
@@ -413,7 +414,6 @@ export const StyledCreateContactModal = styled.div`
         display: flex;
         flex-direction: column;
         gap: 12px;
-        /* margin-top: 20px; */
         align-items: center;
         justify-content: center;
 

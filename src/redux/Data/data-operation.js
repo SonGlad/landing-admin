@@ -42,6 +42,7 @@ export const createNewContact = createAsyncThunk(
 
         try {
             const response = await axios.post('api/contacts', data);
+            toast.success('Your Contact Sucsesfully Created.');
             return response.data;
 
         } catch (error) {
@@ -90,6 +91,7 @@ export const deleteContactById = createAsyncThunk(
 
         try {
             const response = await axios.delete(`api/contacts/${id}`);
+            toast.success('Your Contact were Deleted');
             return response.data;
 
         } catch (error) {

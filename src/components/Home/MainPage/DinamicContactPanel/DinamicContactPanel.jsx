@@ -5,24 +5,50 @@ import {ReactComponent as EmailIcon} from "../../../../images/svg-icons/email.sv
 import {ReactComponent as CheckedIcon} from "../../../../images/svg-icons/check.svg";
 import {ReactComponent as CheckBoxIcon} from "../../../../images/svg-icons/rectangle.svg";
 import {ReactComponent as TrashIcon} from "../../../../images/svg-icons/trash.svg";
+import { useDispatch } from "react-redux";
 import { useData } from "../../../../hooks/useData";
+import { openModalUpdateContact, setUpdateContactModalData } from "../../../../redux/Modal/modal-slice";
+import { onFilterChange } from "../../../../redux/Data/data-slice";
 
 
 export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
-    const {isContactsByResource} = useData();
-    
+    const { isContactsByResource, isFilter} = useData();
+    const dispatch = useDispatch();
+
 
     const ContactsByResource = Object.entries(isContactsByResource).map(([resource, contacts]) => {
         const newContacts = contacts.filter(contact => contact.newContact);
         const regularContacts = contacts.filter(contact => !contact.newContact);
         const sortedContacts = [...newContacts, ...regularContacts];
-    
-        return [resource, sortedContacts];
+
+        const filteredContacts = sortedContacts.filter(contact => 
+            contact.name.toLowerCase().includes(isFilter.toLowerCase()) ||
+            contact.lastName.toLowerCase().includes(isFilter.toLowerCase()) ||
+            contact.email.toLowerCase().includes(isFilter.toLowerCase()) ||
+            contact.phone.replace(/\D/g, '').includes(isFilter)
+        );
+
+        return [resource, filteredContacts];
     });
 
 
+    const openModalUpdate = (_id) => {
+        
+        const contact = ContactsByResource
+        .flatMap(([resource, sortedContacts]) => sortedContacts)
+        .find(contact => contact._id === _id);
+
+        dispatch(setUpdateContactModalData(contact))
+        dispatch(openModalUpdateContact());
+    };
+
+    const handleFilterChange = (event) => {
+        dispatch(onFilterChange(event.target.value));
+    };
+
+
     return(
-        <StyledDinamicContactPanel>
+        <StyledDinamicContactPanel style={{ width: expandedIndex ? '100%' : 'auto' }}>
         {ContactsByResource && ContactsByResource.length > 0 && ContactsByResource.map(([resource, sortedContacts], index) => (
             <div
                     key={index}
@@ -45,18 +71,18 @@ export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
                                         required
                                         placeholder='Type for search contact'
                                         id="filter"
-                                        // value={filter}
-                                        // onChange={handleFilterChange}
+                                        value={isFilter}
+                                        onChange={handleFilterChange}
                                         >
                                     </input>
                                 </label>
                             </div>
                             <div className="nav-btn-block delete-btn-block">
-                                <div className='checkbox-container'>
+                                <div className='checkbox-container all-checkbox-container'>
                                     <input className="checkbox"
                                         type="checkbox"
                                         name="user_agreement" 
-                                        // id={id}
+                                        id="selectAllCheckbox"
                                         // checked={checkbox.includes(id)}
                                         // onChange={() => handleCheckboxChange(id)}
                                     />
@@ -88,11 +114,11 @@ export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
                                                 <CheckBoxIcon className="custom-checkbox-before" width="15" height="15"/>
                                                 <CheckedIcon className="custom-checkbox-after" width="15" height="15"/>
                                             </div>
-                                        </div>
-                                        <div className="item-content-cont">
                                             <button type="button" className="trash-button">
                                                 <TrashIcon className="trash-icon" width={15} height={15}/>
                                             </button>
+                                        </div>
+                                        <div className="item-content-cont" onClick={() => openModalUpdate(_id)}>
                                             <div className="item-container">
                                                 <UserIcon className="icon" width="15" height="15"/>
                                                 <p className="item-text">Name: {name}</p>

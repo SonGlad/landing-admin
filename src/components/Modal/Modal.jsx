@@ -4,11 +4,13 @@ import { useDispatch } from "react-redux";
 import { useEffect, useCallback} from "react";
 import { 
     closeModalSettings, 
-    closeModalCreateContact, 
+    closeModalCreateContact,
+    closeModalUpdateContact, 
 } from "../../redux/Modal/modal-slice";
 import { useModal } from "../../hooks/useModal";
 import { SettingsModal } from "./SettingsModal/SettingsModal";
 import { CreateContactModal } from "./CreateContactModal/CreateContactModal";
+import { UpdateContactModal } from "./UpdateContactModal/UpdateContactModal";
 
 
 const modalRoot = document.querySelector("#modal-root");
@@ -16,7 +18,7 @@ const modalRoot = document.querySelector("#modal-root");
 
 export const Modal = () => {
     const dispatch = useDispatch();
-    const {isSettingsModal, isCreateContactModal} = useModal();
+    const {isSettingsModal, isCreateContactModal, isUpdateContactModal} = useModal();
 
 
     const handleClickClose = useCallback(() => {
@@ -26,7 +28,10 @@ export const Modal = () => {
         if(isCreateContactModal) {
             dispatch(closeModalCreateContact());
         }
-    },[dispatch, isCreateContactModal, isSettingsModal]);
+        if(isUpdateContactModal) {
+            dispatch(closeModalUpdateContact());
+        }
+    },[dispatch, isCreateContactModal, isSettingsModal, isUpdateContactModal]);
 
 
     const handleBackdropClick = useCallback(event => {
@@ -56,13 +61,16 @@ export const Modal = () => {
 
     
     return createPortal(
-        (isSettingsModal || isCreateContactModal) && (
+        (isSettingsModal || isCreateContactModal || isUpdateContactModal) && (
             <ModalStyled onClick={handleBackdropClick}>
                 {isSettingsModal && (
                     <SettingsModal handleClickClose={handleClickClose}/>
                 )}
                 {isCreateContactModal && (
                     <CreateContactModal handleClickClose={handleClickClose}/>
+                )}
+                {isUpdateContactModal && (
+                    <UpdateContactModal handleClickClose={handleClickClose}/>
                 )}
             </ModalStyled>
         ),

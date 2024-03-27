@@ -23,6 +23,7 @@ export const StyledAllContactsPanel = styled.div`
 
     .content-title{
         transform: rotate(-90deg);
+        text-align: center;
 
         &::first-letter{
             text-transform: uppercase;
@@ -203,15 +204,12 @@ export const StyledAllContactsPanel = styled.div`
         display: flex;
         flex-direction: column;
         row-gap: 5px;
-        position: relative;
         width: 100%;
+        cursor: pointer;
     }
 
     .trash-button{
-        position: absolute;
         padding: 0;
-        top: 0;
-        right: 0;
         width: 15px;
         height: 15px;
         display: flex;
@@ -267,7 +265,15 @@ export const StyledAllContactsPanel = styled.div`
     .checkbox-container{
         position: relative;
         margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
+
+    .all-checkbox-container{
+        gap: 0;
+    }
+
     .checkbox {
         width: 15px;
         height: 15px;
