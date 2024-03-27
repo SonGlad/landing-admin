@@ -4,6 +4,8 @@ export const selectCreateContactModal = state => state.modal.isCreateContactModa
 
 export const selectUpdateContactModal = state => state.modal.isUpdateContactModal;
 
+export const selectConfirmModal = state => state.modal.isConfirmModal;
+
 export const selectItemIDForModal = state => state.modal.updateContactModalData;
 
 

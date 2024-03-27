@@ -3,7 +3,7 @@ import {
     getAllContacts,
     getAllByResource, 
     createNewContact, 
-    // updateContactById,
+    updateContactById,
     updateNewContactById,
     deleteContactById,
 } from "./data-operation";
@@ -139,27 +139,31 @@ const dataSlice = createSlice({
 
 
         // UPDATE CONTACT BY ID////////
-        // .addCase(updateContactById.pending, state =>{
-        //     state.isLoading = true;
-        //     state.error = null;
-        // })
-        // .addCase(updateContactById.fulfilled, (state, { payload }) => {
-        //     const updatedIndex = state.contacts.items.findIndex(contact => contact.id === payload.id);
-        //     if (updatedIndex !== -1) {
-        //         state.contacts.items = state.contacts.items.map(contact => {
-        //             if (contact.id === payload.id) {
-        //                 return payload;
-        //             }
-        //             return contact;
-        //         });
-        //     }
-        //     state.isLoading = false;
-        //     state.error = null;
-        // })
-        // .addCase(updateContactById.rejected, (state, {payload}) => {
-        //     state.isLoading = false;
-        //     state.error = payload;
-        // })
+        .addCase(updateContactById.pending, state =>{
+            state.isLoading = true;
+            state.error = null;
+        })
+        .addCase(updateContactById.fulfilled, (state, { payload }) => {
+            const index = state.contacts.findIndex(contact => contact._id === payload._id);
+            if (index !== -1) {
+                state.contacts[index] = payload;
+            }
+
+            for (const key in state.contactsByResource) {
+                const contactsArray = state.contactsByResource[key];
+                const contactIndex = contactsArray.findIndex(contact => contact._id === payload._id);
+                if (contactIndex !== -1) {
+                    state.contactsByResource[key][contactIndex] = payload;
+                }
+            }
+
+            state.isLoading = false;
+            state.error = null;
+        })
+        .addCase(updateContactById.rejected, (state, {payload}) => {
+            state.isLoading = false;
+            state.error = payload;
+        })
 
 
         // UPDATE NEW CONTACT BY ID////////

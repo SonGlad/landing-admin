@@ -7,7 +7,7 @@ import {ReactComponent as CheckBoxIcon} from "../../../../images/svg-icons/recta
 import {ReactComponent as TrashIcon} from "../../../../images/svg-icons/trash.svg";
 import { useDispatch } from "react-redux";
 import { useData } from "../../../../hooks/useData";
-import { openModalUpdateContact, setUpdateContactModalData } from "../../../../redux/Modal/modal-slice";
+import { openModalUpdateContact, setUpdateContactModalData, openModalConfirm } from "../../../../redux/Modal/modal-slice";
 import { onFilterChange, toggleCheckboxState, toggleSelectAllCheckboxDynamic } from "../../../../redux/Data/data-slice";
 import { deleteContactById, updateNewContactById } from "../../../../redux/Data/data-operation";
 
@@ -43,10 +43,13 @@ export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
 
         dispatch(setUpdateContactModalData(contact))
         dispatch(openModalUpdateContact());
-        dispatch(updateNewContactById({ 
-            id: _id, 
-            data: { newContact: false }
-        }));
+
+        if (contact && contact.newContact) {
+            dispatch(updateNewContactById({ 
+                id: _id, 
+                data: { newContact: false }
+            }));
+        }
     };
 
 
@@ -70,12 +73,9 @@ export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
     };
 
 
-    const handleDeleteAllSelected = () => {
-        isCheckbox.forEach((_id) => {
-          onDeleteContact(_id);
-        });
+    const openConfirmModal = () => {
+        dispatch(openModalConfirm())
     };
-
 
 
     return(
@@ -124,7 +124,7 @@ export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
                                     </div>
                                 <p>Select All</p>
                                 {Checked && (
-                                    <button type="button" className="filter-btn delete-btn" onClick={handleDeleteAllSelected}>
+                                    <button type="button" className="filter-btn delete-btn" onClick={openConfirmModal}>
                                         Delete All
                                     </button>
                                 )}

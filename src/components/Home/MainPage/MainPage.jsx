@@ -5,7 +5,7 @@ import { AsidePanel } from "./AsidePanel/AsidePanel";
 import { CreateContact } from "./CreateContact/CreateContact";
 import { AllContactPanel } from "./AllContactPanel/AllContactPanel";
 import { DinamicContactPanel } from "./DinamicContactPanel/DinamicContactPanel";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from "react-redux";
 import {getAllContacts, getAllByResource} from "../../../redux/Data/data-operation";
 
@@ -15,11 +15,18 @@ export const MainPage = () => {
     const [allContactsPanel, setAllContactsPanel] = useState(true);
     const dispatch = useDispatch();
 
-    
-    useEffect(() => {
+
+    const fetchData = useCallback(() => {
         dispatch(getAllContacts());
         dispatch(getAllByResource());
-    },[dispatch])
+    },[dispatch]);
+
+
+    useEffect(() => {
+        fetchData();
+        const intervalId = setInterval(fetchData, 5 * 60 * 1000);
+        return () => clearInterval(intervalId);
+    }, [fetchData]);
 
     
     const handleListClick = (index) => {

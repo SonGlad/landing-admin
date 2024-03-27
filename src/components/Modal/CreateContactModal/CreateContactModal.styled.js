@@ -144,20 +144,6 @@ export const StyledCreateContactModal = styled.div`
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     .react-tel-input .flag-dropdown.open {
         background: transparent;
     }
@@ -205,17 +191,6 @@ export const StyledCreateContactModal = styled.div`
         background-color: ${p => p.theme.color.primary_violet};
     }
 
-
-
-
-
-
-
-
-
-
-
-
     .ErrorInput {
         border: 1px solid #e74a3b;
     }
@@ -254,7 +229,7 @@ export const StyledCreateContactModal = styled.div`
         line-height: 14px;
 
         @media only screen and (min-width: 1440px) {
-            max-width: 200px;
+            /* max-width: 200px; */
         }
     }
 
@@ -271,26 +246,6 @@ export const StyledCreateContactModal = styled.div`
             max-width: 200px;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     .radio-btn-list{
         display: flex;
@@ -360,54 +315,6 @@ export const StyledCreateContactModal = styled.div`
             visibility: visible;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     .ButtonContainer {

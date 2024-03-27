@@ -3,6 +3,7 @@ import {
     selectSettingsModal,
     selectCreateContactModal,
     selectUpdateContactModal,
+    selectConfirmModal,
     selectItemIDForModal,
 } from "../redux/Modal/modal-selectors.js";
 
@@ -11,6 +12,7 @@ export const useModal = () => {
     const isSettingsModal = useSelector(selectSettingsModal);
     const isCreateContactModal= useSelector(selectCreateContactModal);
     const isUpdateContactModal = useSelector(selectUpdateContactModal);
+    const isConfirmModal = useSelector(selectConfirmModal);
     const updateContactModalData = useSelector(selectItemIDForModal);
 
 
@@ -18,6 +20,7 @@ export const useModal = () => {
         isSettingsModal,
         isCreateContactModal,
         isUpdateContactModal,
+        isConfirmModal,
         updateContactModalData,
     }
 };

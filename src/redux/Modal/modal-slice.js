@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { updateContactById } from "../Data/data-operation";
 
 
 const modalSlice = createSlice({
@@ -7,7 +8,9 @@ const modalSlice = createSlice({
         isSettingsModal: false,
         isCreateContactModal: false,
         isUpdateContactModal: false,
+        isConfirmModal: false,
         updateContactModalData: null,
+        error: null,
     },
 
     reducers: {
@@ -29,10 +32,33 @@ const modalSlice = createSlice({
         closeModalUpdateContact: (state) => {
             state.isUpdateContactModal = false;
         },
+        openModalConfirm: (state) => {
+            state.isConfirmModal = true;
+        },
+        closeModalConfirm: (state) => {
+            state.isConfirmModal = false;
+        },
         setUpdateContactModalData: (state, action) => {
             state.updateContactModalData = action.payload;
         },
     },
+
+
+    extraReducers: builder => {
+        builder
+
+        // UPDATE CONTACT BY ID////////
+        .addCase(updateContactById.pending, state =>{
+            state.error = null;
+        })
+        .addCase(updateContactById.fulfilled, (state, { payload }) => {
+            state.updateContactModalData = payload;
+            state.error = null;
+        })
+        .addCase(updateContactById.rejected, (state, {payload}) => {
+            state.error = payload;
+        })
+    }
 });
 
 
@@ -46,5 +72,7 @@ export const {
     closeModalCreateContact,
     openModalUpdateContact,
     closeModalUpdateContact,
+    openModalConfirm,
+    closeModalConfirm,
     setUpdateContactModalData,
 } = modalSlice.actions;

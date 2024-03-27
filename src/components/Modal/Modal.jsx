@@ -6,11 +6,13 @@ import {
     closeModalSettings, 
     closeModalCreateContact,
     closeModalUpdateContact, 
+    closeModalConfirm,
 } from "../../redux/Modal/modal-slice";
 import { useModal } from "../../hooks/useModal";
 import { SettingsModal } from "./SettingsModal/SettingsModal";
 import { CreateContactModal } from "./CreateContactModal/CreateContactModal";
 import { UpdateContactModal } from "./UpdateContactModal/UpdateContactModal";
+import { ConfirmModal } from "./ConfirmModal/ConfirmModal";
 
 
 const modalRoot = document.querySelector("#modal-root");
@@ -18,7 +20,12 @@ const modalRoot = document.querySelector("#modal-root");
 
 export const Modal = () => {
     const dispatch = useDispatch();
-    const {isSettingsModal, isCreateContactModal, isUpdateContactModal} = useModal();
+    const {
+        isSettingsModal, 
+        isCreateContactModal, 
+        isUpdateContactModal, 
+        isConfirmModal
+    } = useModal();
 
 
     const handleClickClose = useCallback(() => {
@@ -31,7 +38,16 @@ export const Modal = () => {
         if(isUpdateContactModal) {
             dispatch(closeModalUpdateContact());
         }
-    },[dispatch, isCreateContactModal, isSettingsModal, isUpdateContactModal]);
+        if(isConfirmModal) {
+            dispatch(closeModalConfirm());
+        }
+    },[
+        dispatch, 
+        isConfirmModal, 
+        isCreateContactModal, 
+        isSettingsModal, 
+        isUpdateContactModal
+    ]);
 
 
     const handleBackdropClick = useCallback(event => {
@@ -61,7 +77,7 @@ export const Modal = () => {
 
     
     return createPortal(
-        (isSettingsModal || isCreateContactModal || isUpdateContactModal) && (
+        (isSettingsModal || isCreateContactModal || isUpdateContactModal || isConfirmModal) && (
             <ModalStyled onClick={handleBackdropClick}>
                 {isSettingsModal && (
                     <SettingsModal handleClickClose={handleClickClose}/>
@@ -71,6 +87,9 @@ export const Modal = () => {
                 )}
                 {isUpdateContactModal && (
                     <UpdateContactModal handleClickClose={handleClickClose}/>
+                )}
+                {isConfirmModal && (
+                    <ConfirmModal handleClickClose={handleClickClose}/>
                 )}
             </ModalStyled>
         ),

@@ -58,6 +58,7 @@ export const updateContactById = createAsyncThunk(
 
         try {
             const response = await axios.patch(`api/contacts/${id}`, data);
+            toast.success('Your Contact was sucsesfylly updated');
             return response.data;
 
         } catch (error) {

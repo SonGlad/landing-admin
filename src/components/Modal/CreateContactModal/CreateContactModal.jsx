@@ -1,5 +1,5 @@
 import { StyledCreateContactModal } from "./CreateContactModal.styled";
-import {ReactComponent as CloseIcon} from "../../../images/svg-icons/close.svg";
+import { ReactComponent as CloseIcon } from "../../../images/svg-icons/close.svg";
 import { useFormik } from "formik";
 import { ContactFormSchema } from "../../../utils/validationSchemas";
 import { ShowRules } from "../../../utils/showRules";
@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 
 
 export const CreateContactModal = ({handleClickClose}) => {
-    const {userRole} = useAuth();
+    const { userRole } = useAuth();
     const [formChanged, setFormChanged] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
     const dispatch = useDispatch();
@@ -50,7 +50,7 @@ export const CreateContactModal = ({handleClickClose}) => {
         onSubmit: (values) => {
             const phoneNumberWithPlus = '+' + phoneNumber;
             const formattedNumber = new AsYouType().input(phoneNumberWithPlus);
-            const tradingBoolean = Boolean(values.trading);
+            const tradingBoolean = values.trading === "false" ? false : Boolean(values.trading);
 
             const dataToSend = {
                 name: values.name,
