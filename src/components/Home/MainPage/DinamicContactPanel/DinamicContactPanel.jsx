@@ -8,11 +8,12 @@ import {ReactComponent as TrashIcon} from "../../../../images/svg-icons/trash.sv
 import { useDispatch } from "react-redux";
 import { useData } from "../../../../hooks/useData";
 import { openModalUpdateContact, setUpdateContactModalData } from "../../../../redux/Modal/modal-slice";
-import { onFilterChange } from "../../../../redux/Data/data-slice";
+import { onFilterChange, toggleCheckboxState, toggleSelectAllCheckboxDynamic } from "../../../../redux/Data/data-slice";
+import { deleteContactById, updateNewContactById } from "../../../../redux/Data/data-operation";
 
 
 export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
-    const { isContactsByResource, isFilter} = useData();
+    const { isContactsByResource, isFilter, isCheckbox} = useData();
     const dispatch = useDispatch();
 
 
@@ -28,7 +29,9 @@ export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
             contact.phone.replace(/\D/g, '').includes(isFilter)
         );
 
-        return [resource, filteredContacts];
+        const Checked = filteredContacts.length > 0 && filteredContacts.every(contact => isCheckbox.includes(contact._id));
+
+        return [resource, filteredContacts, Checked];
     });
 
 
@@ -40,22 +43,50 @@ export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
 
         dispatch(setUpdateContactModalData(contact))
         dispatch(openModalUpdateContact());
+        dispatch(updateNewContactById({ 
+            id: _id, 
+            data: { newContact: false }
+        }));
     };
+
 
     const handleFilterChange = (event) => {
         dispatch(onFilterChange(event.target.value));
     };
 
 
+    const handleCheckboxChange = (_id) => {
+        dispatch(toggleCheckboxState({_id}));
+    };
+
+
+    const handleSelectAllChange = (sortedContacts) => {
+        dispatch(toggleSelectAllCheckboxDynamic(sortedContacts));
+    };
+
+
+    const onDeleteContact = (_id)  => {
+        dispatch(deleteContactById(_id));
+    };
+
+
+    const handleDeleteAllSelected = () => {
+        isCheckbox.forEach((_id) => {
+          onDeleteContact(_id);
+        });
+    };
+
+
+
     return(
         <StyledDinamicContactPanel style={{ width: expandedIndex ? '100%' : 'auto' }}>
-        {ContactsByResource && ContactsByResource.length > 0 && ContactsByResource.map(([resource, sortedContacts], index) => (
+        {ContactsByResource && ContactsByResource.length > 0 && ContactsByResource.map(([resource, sortedContacts, Checked], index) => (
             <div
                     key={index}
                     className={`content-container ${expandedIndex === index ? 'expanded' : ''}`}
                     onClick={() => handleListClick(index)}
                 >
-                    <h2 className={`content-title ${expandedIndex === index ? 'expanded' : ''}`}>{resource}</h2>
+                    <h2 className={`content-title ${expandedIndex === index ? 'expanded' : ''}`}>{resource}: {sortedContacts.length}</h2>
                     {expandedIndex === index && (
                         <div className="filter-btn-block">
                             <div className="nav-btn-block">
@@ -83,8 +114,8 @@ export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
                                         type="checkbox"
                                         name="user_agreement" 
                                         id="selectAllCheckbox"
-                                        // checked={checkbox.includes(id)}
-                                        // onChange={() => handleCheckboxChange(id)}
+                                        checked={Checked}
+                                        onChange={() => handleSelectAllChange(sortedContacts)}
                                     />
                                     <div className="custom-checkbox">
                                         <CheckBoxIcon className="custom-checkbox-before" width="15" height="15"/>
@@ -92,7 +123,11 @@ export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
                                     </div>
                                     </div>
                                 <p>Select All</p>
-                                <button type="button" className="filter-btn delete-btn">Delete All</button>
+                                {Checked && (
+                                    <button type="button" className="filter-btn delete-btn" onClick={handleDeleteAllSelected}>
+                                        Delete All
+                                    </button>
+                                )}
                             </div>
                         </div>
                     )}
@@ -107,16 +142,18 @@ export const DinamicContactPanel = ({expandedIndex, handleListClick}) => {
                                                 type="checkbox"
                                                 name="user_agreement" 
                                                 id={_id}
-                                                // checked={checkbox.includes(contact._id)}
-                                                // onChange={() => handleCheckboxChange(contact._id)}
+                                                checked={isCheckbox.includes(_id)}
+                                                onChange={() => handleCheckboxChange(_id)}
                                             />
                                             <div className="custom-checkbox">
                                                 <CheckBoxIcon className="custom-checkbox-before" width="15" height="15"/>
                                                 <CheckedIcon className="custom-checkbox-after" width="15" height="15"/>
                                             </div>
-                                            <button type="button" className="trash-button">
-                                                <TrashIcon className="trash-icon" width={15} height={15}/>
-                                            </button>
+                                            {isCheckbox.includes(_id) && (
+                                                <button type="button" className="trash-button" onClick={() => onDeleteContact(_id)}>
+                                                    <TrashIcon className="trash-icon" width={15} height={15}/>
+                                                </button>
+                                            )}
                                         </div>
                                         <div className="item-content-cont" onClick={() => openModalUpdate(_id)}>
                                             <div className="item-container">

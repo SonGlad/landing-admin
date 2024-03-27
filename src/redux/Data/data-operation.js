@@ -42,7 +42,6 @@ export const createNewContact = createAsyncThunk(
 
         try {
             const response = await axios.post('api/contacts', data);
-            toast.success('Your Contact Sucsesfully Created.');
             return response.data;
 
         } catch (error) {
@@ -72,7 +71,6 @@ export const updateContactById = createAsyncThunk(
 export const updateNewContactById = createAsyncThunk(
     'api/contacts/id/newContact',
     async ({ id, data }, thunkApi) => {
-
         try {
             const response = await axios.patch(`api/contacts/${id}/newContact`, data);
             return response.data;
@@ -91,7 +89,6 @@ export const deleteContactById = createAsyncThunk(
 
         try {
             const response = await axios.delete(`api/contacts/${id}`);
-            toast.success('Your Contact were Deleted');
             return response.data;
 
         } catch (error) {

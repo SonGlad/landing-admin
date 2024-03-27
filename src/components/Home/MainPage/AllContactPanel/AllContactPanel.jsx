@@ -9,7 +9,7 @@ import { useData } from "../../../../hooks/useData";
 import { useDispatch } from "react-redux";
 import { openModalUpdateContact, setUpdateContactModalData } from "../../../../redux/Modal/modal-slice";
 import { onFilterChange, toggleCheckboxState, toggleSelectAllCheckbox } from "../../../../redux/Data/data-slice";
-import { deleteContactById } from "../../../../redux/Data/data-operation";
+import { deleteContactById, updateNewContactById } from "../../../../redux/Data/data-operation";
 
 
 export const AllContactPanel = ({handleAllContactsPanelClick, allContactsPanel}) => {
@@ -26,6 +26,10 @@ export const AllContactPanel = ({handleAllContactsPanelClick, allContactsPanel})
         const contact = isContacts.find(contact => contact._id === _id);
         dispatch(setUpdateContactModalData(contact))
         dispatch(openModalUpdateContact());
+        dispatch(updateNewContactById({ 
+            id: _id, 
+            data: { newContact: false }
+        }));
     };
 
 
@@ -49,12 +53,21 @@ export const AllContactPanel = ({handleAllContactsPanelClick, allContactsPanel})
         dispatch(toggleCheckboxState({_id}));
     };
 
+
     const handleSelectAllChange = () => {
         dispatch(toggleSelectAllCheckbox());
     }; 
 
+
     const onDeleteContact = (_id)  => {
         dispatch(deleteContactById(_id));
+    };
+
+
+    const handleDeleteAllSelected = () => {
+        isCheckbox.forEach((_id) => {
+          onDeleteContact(_id);
+        });
     };
 
 
@@ -67,7 +80,7 @@ export const AllContactPanel = ({handleAllContactsPanelClick, allContactsPanel})
                 className={`content-container ${allContactsPanel ? 'expanded' : ''}`}
                 onClick={handleAllContactsPanelClick}
             >
-                <h2 className={`content-title ${allContactsPanel ? 'expanded' : ''}`}>All Contacts</h2>
+                <h2 className={`content-title ${allContactsPanel ? 'expanded' : ''}`}>All Contacts: {filteredContacts.length}</h2>
                 {allContactsPanel && (
                     <div className="filter-btn-block">
                         <div className="nav-btn-block">
@@ -105,7 +118,7 @@ export const AllContactPanel = ({handleAllContactsPanelClick, allContactsPanel})
                                 </div>
                             <p>Select All</p>
                             {Checked && (
-                                <button type="button" className="filter-btn delete-btn">
+                                <button type="button" className="filter-btn delete-btn" onClick={handleDeleteAllSelected}>
                                     Delete All
                                 </button>
                             )}

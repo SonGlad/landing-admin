@@ -5,6 +5,7 @@ export const StyledAllContactsPanel = styled.div`
 
     .content-container{
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         width: 50px;
@@ -19,11 +20,13 @@ export const StyledAllContactsPanel = styled.div`
         display: block;
         width: 100%;
         overflow: hidden;
+        flex-direction: row;
     }
 
     .content-title{
         transform: rotate(-90deg);
         text-align: center;
+        width: 300px;
 
         &::first-letter{
             text-transform: uppercase;
@@ -35,6 +38,7 @@ export const StyledAllContactsPanel = styled.div`
         display: block;
         margin-bottom: 10px;
         text-align: center;
+        width: auto;
 
         &::first-letter{
             text-transform: uppercase;

@@ -6,6 +6,7 @@ export const StyledDinamicContactPanel = styled.div`
 
     .content-container{
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         width: 50px;
@@ -20,11 +21,13 @@ export const StyledDinamicContactPanel = styled.div`
         display: block;
         width: 100%;
         overflow: hidden;
+        flex-direction: row;
     }
 
     .content-title{
         text-align: center;
         transform: rotate(-90deg);
+        width: 300px;
 
         &::first-letter{
             text-transform: uppercase;
@@ -36,6 +39,7 @@ export const StyledDinamicContactPanel = styled.div`
         display: block;
         text-align: center;
         margin-bottom: 10px;
+        width: auto;
 
         &::first-letter{
             text-transform: uppercase;
