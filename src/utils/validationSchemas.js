@@ -93,7 +93,7 @@ const UpdateContactFormSchema = Yup.object().shape({
   phone: Yup.string()
     // .matches(/^\+?\d+$/, 'Phone number can only contain digits')
     .min(8, 'Number is too short')
-    .max(15, 'Number is too long')
+    .max(20, 'Number is too long')
     .required("Please enter valid phone number"),
 });
 

@@ -8,12 +8,20 @@ import {ReactComponent as TrashIcon} from "../../../../images/svg-icons/trash.sv
 import { useData } from "../../../../hooks/useData";
 import { useDispatch } from "react-redux";
 import { openModalUpdateContact, setUpdateContactModalData, openModalConfirm } from "../../../../redux/Modal/modal-slice";
-import { onFilterChange, toggleCheckboxState, toggleSelectAllCheckbox } from "../../../../redux/Data/data-slice";
+import { 
+    onFilterChange, 
+    toggleCheckboxState, 
+    toggleSelectAllCheckbox, 
+    onSelectedCheckedCheckboxFilter 
+} from "../../../../redux/Data/data-slice";
 import { deleteContactById, updateNewContactById } from "../../../../redux/Data/data-operation";
+import { useState, useEffect } from "react";
 
 
 export const AllContactPanel = ({handleAllContactsPanelClick, allContactsPanel}) => {
     const { isContacts, isFilter, isCheckbox} = useData();
+    const [buttonFilterType, setButtonFilterType] = useState('');
+    const [Checked, setChecked] = useState(false);
     const dispatch = useDispatch();
  
     
@@ -52,6 +60,29 @@ export const AllContactPanel = ({handleAllContactsPanelClick, allContactsPanel})
     });
 
 
+    const filteredByButton = filteredContacts.filter((contacts) => {
+        switch (buttonFilterType) {
+            case 'New':
+                return contacts.newContact === true;
+            default:
+                return true;
+            }
+    }).sort((a, b) => {
+        switch (buttonFilterType) {
+            case '':
+                return new Date(b.createdAt) - new Date(a.createdAt);
+            default:
+                return true;
+        }
+    });
+
+
+    const handleFilter = (newContact) => {
+        setButtonFilterType(newContact);
+        dispatch(onSelectedCheckedCheckboxFilter(newContact));
+    };
+
+
     const handleCheckboxChange = (_id) => {
         dispatch(toggleCheckboxState({_id}));
     };
@@ -72,7 +103,11 @@ export const AllContactPanel = ({handleAllContactsPanelClick, allContactsPanel})
     };
 
 
-    const Checked = isCheckbox.length > 0 && isCheckbox.length === filteredContacts.length;
+    useEffect(() => {
+        const allSelectedInFiltered = filteredByButton.every(contact => isCheckbox.includes(contact._id));
+        setChecked(allSelectedInFiltered);
+    }, [filteredByButton, isCheckbox]);
+
 
 
     return(
@@ -81,12 +116,18 @@ export const AllContactPanel = ({handleAllContactsPanelClick, allContactsPanel})
                 className={`content-container ${allContactsPanel ? 'expanded' : ''}`}
                 onClick={handleAllContactsPanelClick}
             >
-                <h2 className={`content-title ${allContactsPanel ? 'expanded' : ''}`}>All Contacts: {filteredContacts.length}</h2>
+                <h2 className={`content-title ${allContactsPanel ? 'expanded' : ''}`}>All Contacts: {filteredByButton.length}</h2>
                 {allContactsPanel && (
                     <div className="filter-btn-block">
                         <div className="nav-btn-block">
-                            <button type="button" className="filter-btn">All</button>
-                            <button type="button" className="filter-btn">New</button>
+                            <button type="button" className="filter-btn"
+                                onClick={() => handleFilter('')}
+                            >All
+                            </button>
+                            <button type="button" className="filter-btn"
+                                onClick={() => handleFilter('New')}
+                            >
+                                New</button>
                         </div>
                         <div className="nav-btn-block">
                             <label className='filter-label' htmlFor="filter">
@@ -128,7 +169,7 @@ export const AllContactPanel = ({handleAllContactsPanelClick, allContactsPanel})
                 )}
                     {allContactsPanel && (
                         <ul className="contact-list">
-                            {filteredContacts.map(({_id, name, lastName, email, phone, newContact}) => (
+                            {filteredByButton.map(({_id, name, lastName, email, phone, newContact}) => (
                                 <li key={_id} className="contact-item">
                                     {newContact && <h3>NEW</h3>}
                                     <div className="contact-item-container">

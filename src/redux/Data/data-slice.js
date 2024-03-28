@@ -16,6 +16,7 @@ const initialState = {
     error: null,
     filter: '',
     selectedCheckedCheckbox: [],
+    selectedCheckedCheckboxFilter: false,
 };
 
 const dataSlice = createSlice({
@@ -25,6 +26,10 @@ const dataSlice = createSlice({
     reducers: {
         onFilterChange: (state, {payload}) => {
             state.filter = payload    
+        },
+
+        onSelectedCheckedCheckboxFilter: (state, {payload}) => {
+            state.selectedCheckedCheckboxFilter = payload    
         },
 
         toggleCheckboxState: (state, action) => {
@@ -38,15 +43,25 @@ const dataSlice = createSlice({
         },
 
         toggleSelectAllCheckbox: (state) => {
-            const filteredContactIds = state.contacts.filter((contact) => {
+            const filteredContactIds = state.contacts
+            .filter((contact) => {
                 return (
                     contact.name.toLowerCase().includes(state.filter.toLowerCase()) ||
                     contact.lastName.toLowerCase().includes(state.filter.toLowerCase()) ||
                     contact.email.toLowerCase().includes(state.filter.toLowerCase()) ||
                     contact.phone.replace(/\D/g, '').includes(state.filter)
                 );
-            }).map((contact) => contact._id);
-        
+            })
+            .filter((contact) => {
+                switch (state.selectedCheckedCheckboxFilter) {
+                    case 'New':
+                        return contact.newContact === true;
+                    default:
+                        return true;
+                }
+            })
+            .map((contact) => contact._id);
+    
             if (state.selectedCheckedCheckbox.length === filteredContactIds.length) {
                 state.selectedCheckedCheckbox = [];
             } else {
@@ -64,7 +79,16 @@ const dataSlice = createSlice({
                     contact.email.toLowerCase().includes(state.filter.toLowerCase()) ||
                     contact.phone.replace(/\D/g, '').includes(state.filter)
                 );
-            }).map((contact) => contact._id);
+            })
+            .filter((contact) => {
+                switch (state.selectedCheckedCheckboxFilter) {
+                    case 'New':
+                        return contact.newContact === true;
+                    default:
+                        return true;
+                }
+            })
+            .map((contact) => contact._id);
         
             if (state.selectedCheckedCheckbox.length === filteredContactIds.length) {
                 state.selectedCheckedCheckbox = [];
@@ -230,4 +254,5 @@ export const {
     toggleCheckboxState,
     toggleSelectAllCheckbox,
     toggleSelectAllCheckboxDynamic,
+    onSelectedCheckedCheckboxFilter,
 } = dataSlice.actions;
