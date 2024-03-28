@@ -7,6 +7,7 @@ import {
     updateNewContactById,
     deleteContactById,
 } from "./data-operation";
+import { logOut } from "../Auth/auth-operation";
 
 
 const initialState = {
@@ -239,6 +240,26 @@ const dataSlice = createSlice({
             state.error = null;
         })
         .addCase(deleteContactById.rejected, (state, { payload }) => {
+            state.isLoading = false;
+            state.error = payload;
+        })
+
+
+        // LOGOUT////////
+        .addCase(logOut.pending, state =>{
+            state.isLoading = true;
+            state.error = null;
+        })
+        .addCase(logOut.fulfilled, (state, { payload }) => {
+            state.contacts = [];
+            state.contactsByResource = [];
+            state.filter = '';
+            state.selectedCheckedCheckbox = [];
+            state.selectedCheckedCheckboxFilter = false;
+            state.isLoading = false;
+            state.error = null;
+        })
+        .addCase(logOut.rejected, (state, {payload}) => {
             state.isLoading = false;
             state.error = payload;
         })
