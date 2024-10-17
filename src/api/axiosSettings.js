@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-axios.defaults.baseURL = `https://landing-backend-0aub.onrender.com/`;
+axios.defaults.baseURL = `https://crmv1-0-backend.onrender.com/`;
 
 
 export const token = {
